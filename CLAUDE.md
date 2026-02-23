@@ -54,6 +54,27 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 - **Strict TypeScript**: `strict: true`, `isolatedModules`, bundler moduleResolution.
 - **Exports**: Core exposes `"./css"` for CSS import path (`@glace-ui/core/css`). Types condition comes first in exports map.
 
+## Local Linking (for developing with consumer repos)
+
+```bash
+# In glace-ui: build and register packages globally
+pnpm run dev:link
+
+# In consumer repo (e.g. portfolio-frontend): symlink packages
+pnpm link --global @glace-ui/core @glace-ui/vue
+
+# Watch mode: run in glace-ui so changes rebuild dist/ automatically
+pnpm dev
+
+# Unlink in consumer repo (restore registry versions)
+pnpm uninstall @glace-ui/core @glace-ui/vue && pnpm install
+```
+
+- `dev:link` builds all packages then registers them globally via `pnpm link --global`
+- `link:global` registers without building (when dist is already up to date)
+- Consumer repos pick up changes via symlink — no publish cycle needed
+- Portfolio has `link:glace` / `unlink:glace` convenience scripts
+
 ## Changesets & Publishing
 
 `@glace-ui/core` and `@glace-ui/vue` are linked (version together). Playground and docs are ignored from publishing. Run `pnpm changeset` to add a changeset before releasing.

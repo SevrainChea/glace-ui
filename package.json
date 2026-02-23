@@ -11,7 +11,9 @@
     "typecheck": "turbo typecheck",
     "docs:dev": "pnpm --filter @glace-ui/docs dev",
     "release": "node scripts/release.js",
-    "release:dry": "node scripts/release.js --dry-run"
+    "release:dry": "node scripts/release.js --dry-run",
+    "link:global": "pnpm --filter @glace-ui/core link --global && pnpm --filter @glace-ui/vue link --global",
+    "dev:link": "turbo build && pnpm run link:global"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["esbuild", "rolldown"]
