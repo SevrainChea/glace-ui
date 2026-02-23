@@ -39,8 +39,8 @@ export const GlacePlugin = {
     app.component('GlaceChatBubble', GlaceChatBubble)
     app.component('GlaceAvatar', GlaceAvatar)
 
-    if (options?.theme && typeof document !== 'undefined') {
-      injectGlaceTokens(options.theme)
+    if (typeof document !== 'undefined') {
+      injectGlaceTokens(options?.theme ?? {})
     }
   },
 }
