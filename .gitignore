@@ -9,7 +9,7 @@ dist/
 *.local
 coverage/
 .cache/
-.vitepress/cache/
-.vitepress/dist/
+**/.vitepress/cache/
+**/.vitepress/dist/
 .idea/
 .vscode/
