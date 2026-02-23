@@ -1,6 +1,6 @@
 {
   "name": "@glace-ui/vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Vue 3 glassmorphism component library",
   "type": "module",
   "exports": {
@@ -13,7 +13,9 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "test": "vitest run",

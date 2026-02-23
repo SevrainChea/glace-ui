@@ -9,14 +9,13 @@
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "docs:dev": "pnpm --filter @glace-ui/docs dev",
-    "changeset": "changeset",
-    "release": "turbo build && changeset publish"
+    "release": "node scripts/release.js",
+    "release:dry": "node scripts/release.js --dry-run"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["esbuild", "rolldown"]
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.0",
     "@eslint/js": "^9.0.0",
     "eslint": "^9.0.0",
     "prettier": "^3.4.0",
