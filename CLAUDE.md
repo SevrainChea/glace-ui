@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm build              # Build all packages (turbo, respects dependency order: core → vue → react → apps)
+pnpm build              # Build all packages (turbo, respects dependency order: core → vue → apps)
 pnpm test               # Run all tests (turbo, requires build first)
 pnpm lint               # ESLint across monorepo
 pnpm typecheck          # TypeScript strict check all packages
@@ -75,6 +75,15 @@ pnpm uninstall @glace-ui/core @glace-ui/vue && pnpm install
 - Consumer repos pick up changes via symlink — no publish cycle needed
 - Portfolio has `link:glace` / `unlink:glace` convenience scripts
 
-## Changesets & Publishing
+## Release & Publishing
 
-`@glace-ui/core` and `@glace-ui/vue` are linked (version together). Playground and docs are ignored from publishing. Run `pnpm changeset` to add a changeset before releasing.
+`@glace-ui/core` and `@glace-ui/vue` are version-locked (bumped together). Playground and docs are not published.
+
+```bash
+pnpm release patch          # Bump patch, commit, tag, push (triggers npm publish)
+pnpm release minor          # Bump minor
+pnpm release major          # Bump major
+pnpm release:dry patch      # Dry run — shows what would happen without publishing
+```
+
+The release script (`scripts/release.js`) runs lint, typecheck, build, and tests before bumping versions, then commits as `v<version>`, tags, and pushes. Both packages use `publishConfig.access: "public"`.
