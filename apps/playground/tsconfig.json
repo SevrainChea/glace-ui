@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@glace-ui/core": ["../../packages/core/src"],
+      "@glace-ui/vue": ["../../packages/vue/src"]
+    }
+  },
+  "include": ["src"]
+}

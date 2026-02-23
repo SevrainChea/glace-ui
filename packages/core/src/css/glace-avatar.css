@@ -1,0 +1,86 @@
+/* GlaceAvatar */
+.glace-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--glace-radius-full);
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  overflow: hidden;
+  backdrop-filter: blur(var(--glace-blur-subtle));
+  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  flex-shrink: 0;
+}
+
+.glace-avatar--sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+
+.glace-avatar--md {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.875rem;
+}
+
+.glace-avatar--lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+}
+
+.glace-avatar--xl {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.25rem;
+}
+
+.glace-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glace-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--glace-text-secondary);
+  font-weight: 500;
+}
+
+.glace-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--glace-radius-full);
+  border: 2px solid var(--glace-bg);
+}
+
+.glace-avatar__status--online {
+  background: #22c55e;
+}
+
+.glace-avatar__status--offline {
+  background: #6b7280;
+}
+
+.glace-avatar__status--busy {
+  background: #ef4444;
+}
+
+.glace-avatar__status--away {
+  background: #f59e0b;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glace-avatar {
+    background: rgba(30, 30, 30, 0.85);
+  }
+}

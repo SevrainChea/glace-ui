@@ -1,0 +1,93 @@
+# GlaceUI
+
+> A glassmorphism component library with framework-agnostic CSS tokens and Vue 3 bindings.
+
+## Installation
+
+npm install @glace-ui/vue
+# or CSS-only:
+npm install @glace-ui/core
+
+## Quick Start (Vue 3)
+
+import { createApp } from 'vue'
+import { GlacePlugin } from '@glace-ui/vue'
+import '@glace-ui/core/css'
+createApp(App).use(GlacePlugin).mount('#app')
+
+## Quick Start (CSS-only)
+
+<link rel="stylesheet" href="@glace-ui/core/dist/index.css" />
+Set --glace-* custom properties on :root, then use .glace-* BEM classes.
+
+## Theming
+
+All visual values use CSS custom properties with the --glace- prefix.
+Use createGlaceTheme() or injectGlaceTokens() from @glace-ui/core for JS-based theming.
+Use useGlaceTheme() composable in Vue for reactive theming with provide/inject.
+
+## CSS Custom Properties
+
+--glace-bg: rgba(255, 255, 255, 0.12)
+--glace-bg-hover: rgba(255, 255, 255, 0.18)
+--glace-border: rgba(255, 255, 255, 0.2)
+--glace-text-primary: rgba(255, 255, 255, 0.95)
+--glace-text-secondary: rgba(255, 255, 255, 0.7)
+--glace-shadow: 0 8px 32px rgba(0, 0, 0, 0.12)
+--glace-blur: 16px
+--glace-blur-intense: 24px
+--glace-blur-subtle: 8px
+--glace-radius: 16px
+--glace-radius-sm: 8px
+--glace-radius-lg: 24px
+--glace-radius-full: 9999px
+--glace-border-width: 1px
+
+## Components
+
+### GlaceCard
+Props: blurIntensity (subtle|medium|strong), elevation (flat|raised|floating), hoverable (boolean), radius (sm|md|lg|full), as (string)
+Slots: default, header, footer
+CSS: .glace-card, .glace-card--hoverable, .glace-card--{elevation}, .glace-card--blur-{intensity}, .glace-card--radius-{size}, .glace-card__header, .glace-card__body, .glace-card__footer
+
+### GlaceBadge
+Props: variant (solid|outline|subtle), size (xs|sm|md|lg), color (string), removable (boolean)
+Slots: default
+Events: remove
+CSS: .glace-badge, .glace-badge--{variant}, .glace-badge--{size}, .glace-badge__remove
+
+### GlaceButton
+Props: variant (primary|secondary|ghost), size (sm|md|lg), loading (boolean), disabled (boolean), as (string)
+Slots: default
+CSS: .glace-button, .glace-button--{variant}, .glace-button--{size}, .glace-button__spinner
+
+### GlaceInput
+Props: modelValue (string), type (string), placeholder (string), disabled (boolean), error (string)
+Slots: icon, suffix
+Events: update:modelValue
+CSS: .glace-input, .glace-input--error, .glace-input--disabled, .glace-input__field, .glace-input__icon, .glace-input__suffix, .glace-input__error-text
+
+### GlaceNavbar
+Props: sticky (boolean), blurOnScroll (boolean), transparent (boolean)
+Slots: logo, default, actions
+CSS: .glace-navbar, .glace-navbar--sticky, .glace-navbar--transparent, .glace-navbar--scrolled, .glace-navbar__logo, .glace-navbar__content, .glace-navbar__actions
+
+### GlaceModal
+Props: modelValue (boolean), size (sm|md|lg|full), closeOnOverlay (boolean)
+Slots: default, header, footer
+Events: update:modelValue
+CSS: .glace-modal__overlay, .glace-modal__content, .glace-modal__content--{size}, .glace-modal__header, .glace-modal__body, .glace-modal__footer, .glace-modal__close
+
+### GlaceChatBubble
+Props: variant (sent|received), timestamp (string)
+Slots: default, avatar
+CSS: .glace-chat-bubble, .glace-chat-bubble--{variant}, .glace-chat-bubble__avatar, .glace-chat-bubble__content, .glace-chat-bubble__timestamp
+
+### GlaceAvatar
+Props: src (string), alt (string), size (sm|md|lg|xl), status (online|offline|busy|away)
+Slots: fallback
+CSS: .glace-avatar, .glace-avatar--{size}, .glace-avatar__image, .glace-avatar__fallback, .glace-avatar__status, .glace-avatar__status--{status}
+
+## Documentation
+
+Full docs: https://glace-ui.dev

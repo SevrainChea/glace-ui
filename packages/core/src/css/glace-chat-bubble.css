@@ -1,0 +1,55 @@
+/* GlaceChatBubble */
+.glace-chat-bubble {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 75%;
+}
+
+.glace-chat-bubble--sent {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.glace-chat-bubble--received {
+  margin-right: auto;
+}
+
+.glace-chat-bubble__avatar {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.glace-chat-bubble__content {
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  border-radius: var(--glace-radius);
+  color: var(--glace-text-primary);
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(var(--glace-blur));
+  -webkit-backdrop-filter: blur(var(--glace-blur));
+}
+
+.glace-chat-bubble--sent .glace-chat-bubble__content {
+  background: var(--glace-bg-hover);
+  border-bottom-right-radius: var(--glace-radius-sm);
+}
+
+.glace-chat-bubble--received .glace-chat-bubble__content {
+  border-bottom-left-radius: var(--glace-radius-sm);
+}
+
+.glace-chat-bubble__timestamp {
+  font-size: 0.6875rem;
+  color: var(--glace-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.glace-chat-bubble--sent .glace-chat-bubble__timestamp {
+  text-align: right;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glace-chat-bubble__content {
+    background: rgba(30, 30, 30, 0.85);
+  }
+}

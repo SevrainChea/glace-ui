@@ -1,0 +1,15 @@
+{
+  "name": "@glace-ui/docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0",
+    "vitepress-plugin-llms": "^1.11.0"
+  }
+}

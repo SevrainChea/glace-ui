@@ -1,0 +1,71 @@
+/* GlaceCard */
+.glace-card {
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  border-radius: var(--glace-radius);
+  box-shadow: var(--glace-shadow);
+  color: var(--glace-text-primary);
+  backdrop-filter: blur(var(--glace-blur));
+  -webkit-backdrop-filter: blur(var(--glace-blur));
+  overflow: hidden;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glace-card--hoverable:hover {
+  background: var(--glace-bg-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+}
+
+.glace-card--flat {
+  box-shadow: none;
+}
+
+.glace-card--raised {
+  box-shadow: var(--glace-shadow);
+}
+
+.glace-card--floating {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.glace-card--blur-subtle {
+  backdrop-filter: blur(var(--glace-blur-subtle));
+  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+}
+
+.glace-card--blur-strong {
+  backdrop-filter: blur(var(--glace-blur-intense));
+  -webkit-backdrop-filter: blur(var(--glace-blur-intense));
+}
+
+.glace-card--radius-sm {
+  border-radius: var(--glace-radius-sm);
+}
+
+.glace-card--radius-lg {
+  border-radius: var(--glace-radius-lg);
+}
+
+.glace-card--radius-full {
+  border-radius: var(--glace-radius-full);
+}
+
+.glace-card__header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: var(--glace-border-width) solid var(--glace-border);
+}
+
+.glace-card__body {
+  padding: 1.5rem;
+}
+
+.glace-card__footer {
+  padding: 1rem 1.5rem;
+  border-top: var(--glace-border-width) solid var(--glace-border);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glace-card {
+    background: rgba(30, 30, 30, 0.85);
+  }
+}
