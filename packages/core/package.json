@@ -1,6 +1,6 @@
 {
   "name": "@glace-ui/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Framework-agnostic glassmorphism design tokens, utilities, and CSS",
   "type": "module",
   "exports": {
