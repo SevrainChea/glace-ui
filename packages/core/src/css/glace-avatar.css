@@ -11,6 +11,7 @@
   backdrop-filter: blur(var(--glace-blur-subtle));
   -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
   flex-shrink: 0;
+  --glace-specular-size: 70%;
 }
 
 .glace-avatar--sm {
@@ -38,12 +39,16 @@
 }
 
 .glace-avatar__image {
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .glace-avatar__fallback {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,6 +60,7 @@
 
 .glace-avatar__status {
   position: absolute;
+  z-index: 3;
   bottom: 0;
   right: 0;
   width: 0.625rem;

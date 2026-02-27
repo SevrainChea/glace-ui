@@ -6,6 +6,8 @@
 }
 
 .glace-input__field {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
@@ -26,6 +28,7 @@
 .glace-input__field:focus {
   border-color: var(--glace-text-secondary);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  --glace-specular-intensity: 0.6;
 }
 
 .glace-input--error .glace-input__field {
@@ -48,6 +51,7 @@
   align-items: center;
   color: var(--glace-text-secondary);
   pointer-events: none;
+  z-index: 2;
 }
 
 .glace-input--has-icon .glace-input__field {
@@ -60,6 +64,7 @@
   display: flex;
   align-items: center;
   color: var(--glace-text-secondary);
+  z-index: 2;
 }
 
 .glace-input--has-suffix .glace-input__field {

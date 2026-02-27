@@ -8,6 +8,8 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   padding: 1rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .glace-modal__content {
@@ -42,6 +44,8 @@
 }
 
 .glace-modal__header {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,10 +54,14 @@
 }
 
 .glace-modal__body {
+  position: relative;
+  z-index: 2;
   padding: 1.5rem;
 }
 
 .glace-modal__footer {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -63,6 +71,8 @@
 }
 
 .glace-modal__close {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;

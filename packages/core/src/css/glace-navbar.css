@@ -1,5 +1,7 @@
 /* GlaceNavbar */
 .glace-navbar {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +13,7 @@
   -webkit-backdrop-filter: blur(var(--glace-blur));
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
   z-index: 100;
+  --glace-specular-size: 120%;
 }
 
 .glace-navbar--sticky {
@@ -33,20 +36,31 @@
 }
 
 .glace-navbar__logo {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
 }
 
 .glace-navbar__content {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .glace-navbar__actions {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.glace-navbar--transparent::before,
+.glace-navbar--transparent::after {
+  display: none;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
