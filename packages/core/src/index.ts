@@ -7,6 +7,9 @@ export {
   glaceColorTokensDark,
   glaceBlurTokens,
   glaceBorderTokens,
+  glaceLightTokens,
+  glaceLightTokensLight,
+  glaceLightTokensDark,
   injectGlaceTokens,
 } from './tokens'
 
@@ -15,6 +18,7 @@ export type {
   GlaceColorTokens,
   GlaceBlurTokens,
   GlaceBorderTokens,
+  GlaceLightTokens,
 } from './tokens'
 
 export {
