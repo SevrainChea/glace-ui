@@ -25,6 +25,7 @@ export { useGlaceTheme } from './composables'
 export type { GlaceThemeOptions, GlaceThemeReturn } from './composables'
 export { useGlaceOverlay } from './composables'
 export type { GlaceOverlayReturn } from './composables'
+export { useGlaceLight } from './composables'
 
 // Plugin
 export { GlacePlugin } from './plugin'
