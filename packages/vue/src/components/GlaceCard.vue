@@ -12,7 +12,7 @@
  * ```
  */
 
-import { computed, useSlots } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import type { GlaceCardProps } from './types'
 
 const props = withDefaults(defineProps<GlaceCardProps>(), {
@@ -23,20 +23,25 @@ const props = withDefaults(defineProps<GlaceCardProps>(), {
   as: 'div',
 })
 
+const rootRef = ref<HTMLElement | null>(null)
+
 const slots = useSlots()
 
 const classes = computed(() => [
   'glace-card',
+  'glace-glass',
   props.hoverable && 'glace-card--hoverable',
   props.elevation !== 'raised' && `glace-card--${props.elevation}`,
   props.blurIntensity === 'subtle' && 'glace-card--blur-subtle',
   props.blurIntensity === 'strong' && 'glace-card--blur-strong',
   props.radius !== 'md' && `glace-card--radius-${props.radius}`,
 ])
+
+defineExpose({ rootRef })
 </script>
 
 <template>
-  <component :is="as" :class="classes">
+  <component :is="as" ref="rootRef" :class="classes">
     <div v-if="slots.header" class="glace-card__header">
       <slot name="header" />
     </div>
