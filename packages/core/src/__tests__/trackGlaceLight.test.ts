@@ -31,23 +31,16 @@ describe('trackGlaceLight', () => {
     cleanup()
   })
 
-  it('sets CSS custom properties on mousemove', async () => {
+  it('sets CSS custom properties on mousemove within element', async () => {
     const cleanup = trackGlaceLight(element)
 
-    const event = new MouseEvent('mousemove', {
-      clientX: 200,
-      clientY: 150,
-    })
-    document.dispatchEvent(event)
+    const event = new MouseEvent('mousemove', { clientX: 200, clientY: 150 })
+    element.dispatchEvent(event)
 
-    // Wait for rAF
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
-    const lightX = element.style.getPropertyValue('--glace-light-x')
-    const lightY = element.style.getPropertyValue('--glace-light-y')
-
-    expect(lightX).toBe('50%')
-    expect(lightY).toBe('50%')
+    expect(element.style.getPropertyValue('--glace-light-x')).toBe('50%')
+    expect(element.style.getPropertyValue('--glace-light-y')).toBe('50%')
 
     cleanup()
   })
@@ -55,36 +48,58 @@ describe('trackGlaceLight', () => {
   it('clamps values between 0% and 100%', async () => {
     const cleanup = trackGlaceLight(element)
 
-    const event = new MouseEvent('mousemove', {
-      clientX: 0,
-      clientY: 0,
-    })
-    document.dispatchEvent(event)
+    const event = new MouseEvent('mousemove', { clientX: 0, clientY: 0 })
+    element.dispatchEvent(event)
 
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
-    const lightX = element.style.getPropertyValue('--glace-light-x')
-    const lightY = element.style.getPropertyValue('--glace-light-y')
-
-    expect(lightX).toBe('0%')
-    expect(lightY).toBe('0%')
+    expect(element.style.getPropertyValue('--glace-light-x')).toBe('0%')
+    expect(element.style.getPropertyValue('--glace-light-y')).toBe('0%')
 
     cleanup()
   })
 
-  it('removes listener on cleanup', async () => {
+  it('removes listeners on cleanup — mousemove no longer updates properties', async () => {
     const cleanup = trackGlaceLight(element)
     cleanup()
 
-    const event = new MouseEvent('mousemove', {
-      clientX: 200,
-      clientY: 150,
-    })
-    document.dispatchEvent(event)
+    const event = new MouseEvent('mousemove', { clientX: 200, clientY: 150 })
+    element.dispatchEvent(event)
 
     await new Promise((resolve) => requestAnimationFrame(resolve))
 
-    const lightX = element.style.getPropertyValue('--glace-light-x')
-    expect(lightX).toBe('')
+    expect(element.style.getPropertyValue('--glace-light-x')).toBe('')
+  })
+
+  it('adds is-lit class on mouseenter', () => {
+    const cleanup = trackGlaceLight(element)
+
+    element.dispatchEvent(new MouseEvent('mouseenter'))
+
+    expect(element.classList.contains('is-lit')).toBe(true)
+
+    cleanup()
+  })
+
+  it('removes is-lit class on mouseleave', () => {
+    const cleanup = trackGlaceLight(element)
+
+    element.dispatchEvent(new MouseEvent('mouseenter'))
+    element.dispatchEvent(new MouseEvent('mouseleave'))
+
+    expect(element.classList.contains('is-lit')).toBe(false)
+
+    cleanup()
+  })
+
+  it('removes is-lit on cleanup — enter events no longer add it', () => {
+    const cleanup = trackGlaceLight(element)
+
+    element.dispatchEvent(new MouseEvent('mouseenter'))
+    cleanup()
+
+    // After cleanup, enter/leave events should have no effect
+    element.dispatchEvent(new MouseEvent('mouseenter'))
+    expect(element.classList.contains('is-lit')).toBe(false)
   })
 })
