@@ -95,7 +95,7 @@ onUnmounted(() => {
       @click="onOverlayClick"
       @keydown="onKeydown"
     >
-      <div ref="contentRef" :class="['glace-modal__content', `glace-modal__content--${size}`]">
+      <div ref="contentRef" :class="['glace-modal__content', 'glace-glass', `glace-modal__content--${size}`]">
         <div v-if="slots.header" class="glace-modal__header">
           <slot name="header" />
           <button class="glace-modal__close" type="button" aria-label="Close" @click="close">

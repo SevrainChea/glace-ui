@@ -10,7 +10,7 @@
  * ```
  */
 
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { GlaceBadgeProps } from './types'
 
 const props = withDefaults(defineProps<GlaceBadgeProps>(), {
@@ -24,8 +24,11 @@ const emit = defineEmits<{
   remove: []
 }>()
 
+const rootRef = ref<HTMLElement | null>(null)
+
 const classes = computed(() => [
   'glace-badge',
+  'glace-glass',
   `glace-badge--${props.variant}`,
   `glace-badge--${props.size}`,
 ])
@@ -33,10 +36,12 @@ const classes = computed(() => [
 const style = computed(() =>
   props.color ? { '--glace-bg': props.color } as Record<string, string> : undefined,
 )
+
+defineExpose({ rootRef })
 </script>
 
 <template>
-  <span :class="classes" :style="style">
+  <span ref="rootRef" :class="classes" :style="style">
     <slot />
     <button
       v-if="removable"

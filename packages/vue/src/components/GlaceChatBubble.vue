@@ -10,7 +10,7 @@
  * ```
  */
 
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { GlaceChatBubbleProps } from './types'
 
 const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
@@ -18,10 +18,14 @@ const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
   timestamp: undefined,
 })
 
+const contentRef = ref<HTMLElement | null>(null)
+
 const classes = computed(() => [
   'glace-chat-bubble',
   `glace-chat-bubble--${props.variant}`,
 ])
+
+defineExpose({ contentRef })
 </script>
 
 <template>
@@ -30,7 +34,7 @@ const classes = computed(() => [
       <slot name="avatar" />
     </div>
     <div>
-      <div class="glace-chat-bubble__content">
+      <div ref="contentRef" :class="['glace-chat-bubble__content', 'glace-glass']">
         <slot />
       </div>
       <div v-if="timestamp" class="glace-chat-bubble__timestamp">

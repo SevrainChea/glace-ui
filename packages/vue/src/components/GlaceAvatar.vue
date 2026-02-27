@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<GlaceAvatarProps>(), {
   status: undefined,
 })
 
+const rootRef = ref<HTMLElement | null>(null)
 const showFallback = ref(!props.src)
 
 function onImageError() {
@@ -35,12 +36,15 @@ watch(
 
 const classes = computed(() => [
   'glace-avatar',
+  'glace-glass',
   `glace-avatar--${props.size}`,
 ])
+
+defineExpose({ rootRef })
 </script>
 
 <template>
-  <div :class="classes">
+  <div ref="rootRef" :class="classes">
     <img
       v-if="src && !showFallback"
       :src="src"

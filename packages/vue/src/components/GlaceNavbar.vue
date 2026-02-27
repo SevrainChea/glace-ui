@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<GlaceNavbarProps>(), {
   transparent: false,
 })
 
+const rootRef = ref<HTMLElement | null>(null)
 const isScrolled = ref(false)
 
 function handleScroll() {
@@ -42,14 +43,17 @@ onUnmounted(() => {
 
 const classes = computed(() => [
   'glace-navbar',
+  !(props.transparent && !isScrolled.value) && 'glace-glass',
   props.sticky && 'glace-navbar--sticky',
   props.transparent && !isScrolled.value && 'glace-navbar--transparent',
   props.blurOnScroll && isScrolled.value && 'glace-navbar--scrolled',
 ])
+
+defineExpose({ rootRef })
 </script>
 
 <template>
-  <nav :class="classes" role="navigation">
+  <nav ref="rootRef" :class="classes" role="navigation">
     <div class="glace-navbar__logo">
       <slot name="logo" />
     </div>

@@ -10,7 +10,7 @@
  * ```
  */
 
-import { computed, useSlots } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import type { GlaceInputProps } from './types'
 
 const props = withDefaults(defineProps<GlaceInputProps>(), {
@@ -27,6 +27,8 @@ const emit = defineEmits<{
 
 const slots = useSlots()
 
+const fieldRef = ref<HTMLElement | null>(null)
+
 const inputId = `glace-input-${Math.random().toString(36).slice(2, 9)}`
 const errorId = computed(() => props.error ? `${inputId}-error` : undefined)
 
@@ -41,6 +43,8 @@ const wrapperClasses = computed(() => [
 function onInput(event: Event) {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
 }
+
+defineExpose({ fieldRef })
 </script>
 
 <template>
@@ -50,8 +54,9 @@ function onInput(event: Event) {
         <slot name="icon" />
       </span>
       <input
+        ref="fieldRef"
         :id="inputId"
-        class="glace-input__field"
+        :class="['glace-input__field', 'glace-glass']"
         :type="type"
         :value="modelValue"
         :placeholder="placeholder"
