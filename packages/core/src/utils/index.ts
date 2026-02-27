@@ -58,3 +58,6 @@ export function generateGlaceGradient(options: GlaceGradientOptions = {}): strin
 export function createGlaceTheme(overrides: Partial<GlaceTokens> = {}): GlaceTokens {
   return { ...glaceTokens, ...overrides }
 }
+
+export { trackGlaceLight } from './trackGlaceLight'
+export type { TrackGlaceLightOptions } from './trackGlaceLight'

@@ -25,6 +25,7 @@ export {
   getContrastColor,
   generateGlaceGradient,
   createGlaceTheme,
+  trackGlaceLight,
 } from './utils'
 
-export type { GlaceGradientOptions } from './utils'
+export type { GlaceGradientOptions, TrackGlaceLightOptions } from './utils'
