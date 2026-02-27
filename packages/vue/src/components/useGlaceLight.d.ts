@@ -1,3 +1,9 @@
 import type { Ref } from 'vue'
+import type { TrackGlaceLightOptions } from '@glace-ui/core'
 
-export declare function useGlaceLight(elementRef: Ref<HTMLElement | null>): void
+export type UseGlaceLightOptions = TrackGlaceLightOptions
+
+export declare function useGlaceLight(
+  elementRef: Ref<HTMLElement | null>,
+  options?: UseGlaceLightOptions,
+): void
