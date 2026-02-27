@@ -8,7 +8,7 @@ import {
   glaceColorTokens,
   glaceLightTokens,
 } from '../tokens'
-import type { GlaceTokens, GlaceLightTokens } from '../tokens'
+import type { GlaceTokens } from '../tokens'
 
 describe('glaceTokens', () => {
   it('includes all color tokens', () => {
