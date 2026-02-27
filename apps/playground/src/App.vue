@@ -164,7 +164,7 @@ const errorInputValue = ref('bad input')
 <style scoped>
 .playground {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background: linear-gradient(135deg, rgba(15, 12, 41, 0.3), rgba(48, 43, 99, 0.3), rgba(36, 36, 62, 0.3)), url('/foret.webp') center / cover no-repeat fixed;
   color: #e2e8f0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
