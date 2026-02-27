@@ -11,6 +11,7 @@
  */
 
 import { ref, computed, watch } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceAvatarProps } from './types'
 
 const props = withDefaults(defineProps<GlaceAvatarProps>(), {
@@ -39,6 +40,8 @@ const classes = computed(() => [
   'glace-glass',
   `glace-avatar--${props.size}`,
 ])
+
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>

@@ -11,6 +11,7 @@
  */
 
 import { computed, ref } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceButtonProps } from './types'
 
 const props = withDefaults(defineProps<GlaceButtonProps>(), {
@@ -29,6 +30,8 @@ const classes = computed(() => [
   `glace-button--${props.variant}`,
   `glace-button--${props.size}`,
 ])
+
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>

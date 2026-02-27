@@ -13,6 +13,7 @@
  */
 
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceNavbarProps } from './types'
 
 const props = withDefaults(defineProps<GlaceNavbarProps>(), {
@@ -48,6 +49,8 @@ const classes = computed(() => [
   props.transparent && !isScrolled.value && 'glace-navbar--transparent',
   props.blurOnScroll && isScrolled.value && 'glace-navbar--scrolled',
 ])
+
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>

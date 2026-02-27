@@ -13,6 +13,7 @@
  */
 
 import { ref, watch, nextTick, onUnmounted, useSlots } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceModalProps } from './types'
 
 const props = withDefaults(defineProps<GlaceModalProps>(), {
@@ -26,6 +27,7 @@ const emit = defineEmits<{
 
 const slots = useSlots()
 const contentRef = ref<HTMLElement | null>(null)
+useGlaceLight(contentRef)
 
 function close() {
   emit('update:modelValue', false)

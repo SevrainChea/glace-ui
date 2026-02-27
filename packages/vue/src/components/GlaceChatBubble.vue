@@ -11,6 +11,7 @@
  */
 
 import { computed, ref } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceChatBubbleProps } from './types'
 
 const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
@@ -24,6 +25,8 @@ const classes = computed(() => [
   'glace-chat-bubble',
   `glace-chat-bubble--${props.variant}`,
 ])
+
+useGlaceLight(contentRef)
 
 defineExpose({ contentRef })
 </script>

@@ -11,6 +11,7 @@
  */
 
 import { computed, ref, useSlots } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceInputProps } from './types'
 
 const props = withDefaults(defineProps<GlaceInputProps>(), {
@@ -43,6 +44,8 @@ const wrapperClasses = computed(() => [
 function onInput(event: Event) {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
 }
+
+useGlaceLight(fieldRef)
 
 defineExpose({ fieldRef })
 </script>

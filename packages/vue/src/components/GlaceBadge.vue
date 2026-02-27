@@ -11,6 +11,7 @@
  */
 
 import { computed, ref } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceBadgeProps } from './types'
 
 const props = withDefaults(defineProps<GlaceBadgeProps>(), {
@@ -36,6 +37,8 @@ const classes = computed(() => [
 const style = computed(() =>
   props.color ? { '--glace-bg': props.color } as Record<string, string> : undefined,
 )
+
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>

@@ -13,6 +13,7 @@
  */
 
 import { computed, ref, useSlots } from 'vue'
+import { useGlaceLight } from '../composables'
 import type { GlaceCardProps } from './types'
 
 const props = withDefaults(defineProps<GlaceCardProps>(), {
@@ -36,6 +37,8 @@ const classes = computed(() => [
   props.blurIntensity === 'strong' && 'glace-card--blur-strong',
   props.radius !== 'md' && `glace-card--radius-${props.radius}`,
 ])
+
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>
