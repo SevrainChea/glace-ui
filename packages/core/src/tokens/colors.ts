@@ -10,9 +10,9 @@ export interface GlaceColorTokens {
 
 /** Default glace color tokens (dark theme) */
 export const glaceColorTokens: GlaceColorTokens = {
-  '--glace-bg': 'rgba(255, 255, 255, 0.12)',
-  '--glace-bg-hover': 'rgba(255, 255, 255, 0.18)',
-  '--glace-border': 'rgba(255, 255, 255, 0.2)',
+  '--glace-bg': 'rgba(255, 255, 255, 0.08)',
+  '--glace-bg-hover': 'rgba(255, 255, 255, 0.14)',
+  '--glace-border': 'rgba(255, 255, 255, 0.15)',
   '--glace-text-primary': 'rgba(255, 255, 255, 0.95)',
   '--glace-text-secondary': 'rgba(255, 255, 255, 0.7)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.12)',
@@ -20,9 +20,9 @@ export const glaceColorTokens: GlaceColorTokens = {
 
 /** Light theme color overrides */
 export const glaceColorTokensLight: GlaceColorTokens = {
-  '--glace-bg': 'rgba(255, 255, 255, 0.65)',
-  '--glace-bg-hover': 'rgba(255, 255, 255, 0.8)',
-  '--glace-border': 'rgba(255, 255, 255, 0.5)',
+  '--glace-bg': 'rgba(255, 255, 255, 0.55)',
+  '--glace-bg-hover': 'rgba(255, 255, 255, 0.7)',
+  '--glace-border': 'rgba(255, 255, 255, 0.4)',
   '--glace-text-primary': 'rgba(0, 0, 0, 0.87)',
   '--glace-text-secondary': 'rgba(0, 0, 0, 0.6)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.08)',
@@ -30,9 +30,9 @@ export const glaceColorTokensLight: GlaceColorTokens = {
 
 /** Dark theme color overrides */
 export const glaceColorTokensDark: GlaceColorTokens = {
-  '--glace-bg': 'rgba(0, 0, 0, 0.3)',
-  '--glace-bg-hover': 'rgba(0, 0, 0, 0.4)',
-  '--glace-border': 'rgba(255, 255, 255, 0.15)',
+  '--glace-bg': 'rgba(0, 0, 0, 0.25)',
+  '--glace-bg-hover': 'rgba(0, 0, 0, 0.35)',
+  '--glace-border': 'rgba(255, 255, 255, 0.12)',
   '--glace-text-primary': 'rgba(255, 255, 255, 0.95)',
   '--glace-text-secondary': 'rgba(255, 255, 255, 0.7)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.24)',
