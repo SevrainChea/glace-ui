@@ -1,0 +1,37 @@
+/* Liquid Glass — shared pseudo-element layers for all glace components.
+   ::before = specular highlight, ::after = edge light + depth tint.
+   Components must set position: relative on their root element. */
+
+.glace-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse var(--glace-specular-size) var(--glace-specular-size)
+      at var(--glace-light-x) var(--glace-light-y),
+    rgba(255, 255, 255, var(--glace-specular-intensity)),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.glace-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 1px 1px 0 var(--glace-edge-light),
+    inset -1px -1px 0 var(--glace-edge-shadow);
+  background: linear-gradient(
+    135deg,
+    var(--glace-tint) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}

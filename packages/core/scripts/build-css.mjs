@@ -7,6 +7,7 @@ const cssDir = resolve(__dirname, '../src/css')
 const distDir = resolve(__dirname, '../dist')
 
 const files = [
+  'glace-liquid-glass.css',
   'glace-card.css',
   'glace-badge.css',
   'glace-button.css',
