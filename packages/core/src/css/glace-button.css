@@ -11,6 +11,8 @@
   font-weight: 500;
   cursor: pointer;
   padding: 0.5rem 1rem;
+  position: relative;
+  overflow: hidden;
   backdrop-filter: blur(var(--glace-blur));
   -webkit-backdrop-filter: blur(var(--glace-blur));
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
@@ -23,6 +25,10 @@
 
 .glace-button:active:not(:disabled) {
   transform: scale(0.98);
+}
+
+.glace-button:active:not(:disabled)::before {
+  opacity: 0.7;
 }
 
 .glace-button:disabled {
@@ -50,6 +56,11 @@
   -webkit-backdrop-filter: none;
 }
 
+.glace-button--ghost::before,
+.glace-button--ghost::after {
+  display: none;
+}
+
 .glace-button--ghost:hover:not(:disabled) {
   background: var(--glace-bg);
 }
@@ -70,6 +81,8 @@
 }
 
 .glace-button__spinner {
+  position: relative;
+  z-index: 2;
   width: 1em;
   height: 1em;
   border: 2px solid var(--glace-border);

@@ -10,7 +10,7 @@
  * ```
  */
 
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { GlaceButtonProps } from './types'
 
 const props = withDefaults(defineProps<GlaceButtonProps>(), {
@@ -21,21 +21,27 @@ const props = withDefaults(defineProps<GlaceButtonProps>(), {
   as: 'button',
 })
 
+const rootRef = ref<HTMLElement | null>(null)
+
 const classes = computed(() => [
   'glace-button',
+  props.variant !== 'ghost' && 'glace-glass',
   `glace-button--${props.variant}`,
   `glace-button--${props.size}`,
 ])
+
+defineExpose({ rootRef })
 </script>
 
 <template>
   <component
+    ref="rootRef"
     :is="as"
     :class="classes"
     :disabled="disabled || loading"
     :aria-busy="loading || undefined"
   >
     <span v-if="loading" class="glace-button__spinner" aria-hidden="true" />
-    <slot v-else />
+    <span v-else style="position: relative; z-index: 2; display: contents"><slot /></span>
   </component>
 </template>
