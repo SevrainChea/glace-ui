@@ -59,6 +59,20 @@ describe('trackGlaceLight', () => {
     cleanup()
   })
 
+  it('clamps values at 100% maximum', async () => {
+    const cleanup = trackGlaceLight(element)
+
+    const event = new MouseEvent('mousemove', { clientX: 400, clientY: 300 })
+    element.dispatchEvent(event)
+
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    expect(element.style.getPropertyValue('--glace-light-x')).toBe('100%')
+    expect(element.style.getPropertyValue('--glace-light-y')).toBe('100%')
+
+    cleanup()
+  })
+
   it('removes listeners on cleanup — mousemove no longer updates properties', async () => {
     const cleanup = trackGlaceLight(element)
     cleanup()
