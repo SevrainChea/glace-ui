@@ -11,7 +11,7 @@
  */
 
 import { ref, computed, watch } from 'vue'
-import { useGlaceLight } from '../composables'
+import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceAvatarProps } from './types'
 
 const props = withDefaults(defineProps<GlaceAvatarProps>(), {

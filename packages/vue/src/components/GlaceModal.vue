@@ -13,7 +13,7 @@
  */
 
 import { ref, watch, nextTick, onUnmounted, useSlots } from 'vue'
-import { useGlaceLight } from '../composables'
+import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceModalProps } from './types'
 
 const props = withDefaults(defineProps<GlaceModalProps>(), {

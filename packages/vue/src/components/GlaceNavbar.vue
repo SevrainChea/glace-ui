@@ -13,7 +13,7 @@
  */
 
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useGlaceLight } from '../composables'
+import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceNavbarProps } from './types'
 
 const props = withDefaults(defineProps<GlaceNavbarProps>(), {

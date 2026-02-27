@@ -11,7 +11,7 @@
  */
 
 import { computed, ref } from 'vue'
-import { useGlaceLight } from '../composables'
+import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceChatBubbleProps } from './types'
 
 const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
