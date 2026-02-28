@@ -15,6 +15,8 @@ import GlaceAvatar from './components/GlaceAvatar.vue'
 export interface GlacePluginOptions {
   /** Token overrides to apply on install */
   theme?: Partial<GlaceTokens>
+  /** Set to false to globally disable the specular hover effect (default: true) */
+  hoverEffect?: boolean
 }
 
 /**
@@ -40,7 +42,12 @@ export const GlacePlugin = {
     app.component('GlaceAvatar', GlaceAvatar)
 
     if (typeof document !== 'undefined') {
-      injectGlaceTokens(options?.theme ?? {})
+      const theme = options?.theme ?? {}
+      if (options?.hoverEffect === false) {
+        injectGlaceTokens({ '--glace-hover-enabled': '0', ...theme })
+      } else {
+        injectGlaceTokens(theme)
+      }
     }
   },
 }

@@ -38,7 +38,9 @@ const classes = computed(() => [
   props.radius !== 'md' && `glace-card--radius-${props.radius}`,
 ])
 
-useGlaceLight(rootRef)
+if (props.hoverable) {
+  useGlaceLight(rootRef)
+}
 
 defineExpose({ rootRef })
 </script>

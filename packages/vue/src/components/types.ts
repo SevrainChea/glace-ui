@@ -36,6 +36,8 @@ export interface GlaceButtonProps {
   disabled?: boolean
   /** HTML element tag to render as */
   as?: string
+  /** Disable the specular hover effect (default: true) */
+  hoverEffect?: boolean
 }
 
 /** Props for GlaceInput */

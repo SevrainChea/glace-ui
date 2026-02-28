@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<GlaceButtonProps>(), {
   loading: false,
   disabled: false,
   as: 'button',
+  hoverEffect: true,
 })
 
 const rootRef = ref<HTMLElement | null>(null)
@@ -31,7 +32,9 @@ const classes = computed(() => [
   `glace-button--${props.size}`,
 ])
 
-useGlaceLight(rootRef)
+if (props.hoverEffect) {
+  useGlaceLight(rootRef)
+}
 
 defineExpose({ rootRef })
 </script>
