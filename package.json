@@ -4,16 +4,16 @@
   "type": "module",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
     "lint": "eslint .",
-    "test": "turbo test",
-    "typecheck": "turbo typecheck",
+    "test": "pnpm -r run build && pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck",
     "docs:dev": "pnpm --filter @glace-ui/docs dev",
     "release": "node scripts/release.js",
     "release:dry": "node scripts/release.js --dry-run",
     "link:global": "pnpm --filter @glace-ui/core link --global && pnpm --filter @glace-ui/vue link --global",
-    "dev:link": "turbo build && pnpm run link:global"
+    "dev:link": "pnpm run build && pnpm run link:global"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["esbuild", "rolldown"]
@@ -22,7 +22,6 @@
     "@eslint/js": "^9.0.0",
     "eslint": "^9.0.0",
     "prettier": "^3.4.0",
-    "turbo": "^2.3.0",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.0.0",
     "vitest": "^3.0.0"
