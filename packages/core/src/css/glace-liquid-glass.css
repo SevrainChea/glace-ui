@@ -7,18 +7,12 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background:
-    radial-gradient(
-      circle 8px at var(--glace-light-x) var(--glace-light-y),
-      rgba(255, 255, 255, calc(var(--glace-specular-intensity) * 2.5)),
-      transparent 100%
-    ),
-    radial-gradient(
-      circle var(--glace-specular-size)
-        at var(--glace-light-x) var(--glace-light-y),
-      rgba(255, 255, 255, var(--glace-specular-intensity)),
-      transparent
-    );
+  background: radial-gradient(
+    circle var(--glace-specular-size)
+      at var(--glace-light-x) var(--glace-light-y),
+    rgba(255, 255, 255, var(--glace-specular-intensity)),
+    transparent
+  );
   pointer-events: none;
   z-index: 1;
   opacity: 0;
