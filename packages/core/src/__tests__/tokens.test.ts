@@ -60,8 +60,8 @@ describe('glaceLightTokens', () => {
   it('includes all light tokens', () => {
     expect(glaceLightTokens['--glace-light-x']).toBe('30%')
     expect(glaceLightTokens['--glace-light-y']).toBe('20%')
-    expect(glaceLightTokens['--glace-specular-intensity']).toBe('0.22')
-    expect(glaceLightTokens['--glace-specular-size']).toBe('38%')
+    expect(glaceLightTokens['--glace-specular-intensity']).toBe('0.15')
+    expect(glaceLightTokens['--glace-specular-size']).toBe('80px')
     expect(glaceLightTokens['--glace-hover-enabled']).toBe('1')
     expect(glaceLightTokens['--glace-tint']).toBe('rgba(255, 255, 255, 0.08)')
     expect(glaceLightTokens['--glace-edge-light']).toBe('rgba(255, 255, 255, 0.25)')

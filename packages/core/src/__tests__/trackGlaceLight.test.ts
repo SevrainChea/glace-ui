@@ -32,7 +32,7 @@ describe('trackGlaceLight', () => {
   })
 
   it('sets CSS custom properties on mousemove within element', async () => {
-    const cleanup = trackGlaceLight(element)
+    const cleanup = trackGlaceLight(element, { lerpFactor: 1 })
 
     const event = new MouseEvent('mousemove', { clientX: 200, clientY: 150 })
     element.dispatchEvent(event)
@@ -46,7 +46,7 @@ describe('trackGlaceLight', () => {
   })
 
   it('clamps values between 0% and 100%', async () => {
-    const cleanup = trackGlaceLight(element)
+    const cleanup = trackGlaceLight(element, { lerpFactor: 1 })
 
     const event = new MouseEvent('mousemove', { clientX: 0, clientY: 0 })
     element.dispatchEvent(event)
@@ -60,7 +60,7 @@ describe('trackGlaceLight', () => {
   })
 
   it('clamps values at 100% maximum', async () => {
-    const cleanup = trackGlaceLight(element)
+    const cleanup = trackGlaceLight(element, { lerpFactor: 1 })
 
     const event = new MouseEvent('mousemove', { clientX: 400, clientY: 300 })
     element.dispatchEvent(event)
@@ -96,7 +96,7 @@ describe('trackGlaceLight', () => {
   })
 
   it('scales coordinates by intensity multiplier', async () => {
-    const cleanup = trackGlaceLight(element, { intensity: 0.5 })
+    const cleanup = trackGlaceLight(element, { intensity: 0.5, lerpFactor: 1 })
 
     // clientX: 200, clientY: 150 → raw 50%, 50% → scaled by 0.5 → 25%, 25%
     const event = new MouseEvent('mousemove', { clientX: 200, clientY: 150 })
