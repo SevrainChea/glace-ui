@@ -2,7 +2,7 @@
 layout: home
 hero:
   name: GlaceUI
-  text: Glacemorphism Component Library
+  text: Liquid Glass Component Library
   tagline: Beautiful, accessible glace-effect components for Vue 3
   actions:
     - theme: brand
