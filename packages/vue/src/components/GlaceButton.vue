@@ -27,7 +27,7 @@ const rootRef = ref<HTMLElement | null>(null)
 
 const classes = computed(() => [
   'glace-button',
-  props.variant !== 'ghost' && 'glace-glass',
+  props.variant !== 'ghost' && props.variant !== 'outline' && 'glace-glass',
   `glace-button--${props.variant}`,
   `glace-button--${props.size}`,
 ])

@@ -26,6 +26,12 @@ describe('GlaceButton', () => {
     expect(wrapper.classes()).not.toContain('glace-glass')
   })
 
+  it('applies outline variant class and omits glace-glass', () => {
+    const wrapper = mount(GlaceButton, { props: { variant: 'outline' }, slots: { default: 'Click' } })
+    expect(wrapper.classes()).toContain('glace-button--outline')
+    expect(wrapper.classes()).not.toContain('glace-glass')
+  })
+
   it('applies subtle variant class', () => {
     const wrapper = mount(GlaceButton, { props: { variant: 'subtle' }, slots: { default: 'Click' } })
     expect(wrapper.classes()).toContain('glace-button--subtle')
