@@ -50,6 +50,7 @@ function updatePosition() {
   // TODO: handle scroll/resize with dynamic repositioning instead of closing.
   // Also consider flipping upward when near the bottom of the viewport.
   dropdownStyle.value = {
+    position: 'fixed',
     top: `${rect.bottom + 4}px`,
     left: `${rect.left}px`,
     width: `${rect.width}px`,
