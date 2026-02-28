@@ -7,6 +7,7 @@ export { default as GlaceNavbar } from './components/GlaceNavbar.vue'
 export { default as GlaceModal } from './components/GlaceModal.vue'
 export { default as GlaceChatBubble } from './components/GlaceChatBubble.vue'
 export { default as GlaceAvatar } from './components/GlaceAvatar.vue'
+export { default as GlaceSelect } from './components/GlaceSelect.vue'
 
 // Component prop types
 export type {
@@ -18,6 +19,8 @@ export type {
   GlaceModalProps,
   GlaceChatBubbleProps,
   GlaceAvatarProps,
+  GlaceSelectProps,
+  GlaceSelectOption,
 } from './components/types'
 
 // Composables
