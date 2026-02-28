@@ -42,7 +42,7 @@ const errorInputValue = ref('bad input')
             </template>
           </GlaceCard>
 
-          <GlaceCard elevation="raised" blur-intensity="medium" hoverable>
+          <GlaceCard elevation="raised" blur-intensity="medium">
             <template #header>Raised Elevation</template>
             Medium blur with a soft raised shadow. Hover to see the effect.
             <template #footer>
@@ -50,7 +50,7 @@ const errorInputValue = ref('bad input')
             </template>
           </GlaceCard>
 
-          <GlaceCard elevation="floating" blur-intensity="strong" hoverable>
+          <GlaceCard elevation="floating" blur-intensity="strong">
             <template #header>Floating Elevation</template>
             Strong blur with a pronounced floating shadow for emphasis.
             <template #footer>

@@ -12,10 +12,6 @@
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.glace-card--hoverable:hover {
-  background: var(--glace-bg-hover);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
-}
 
 .glace-card--flat {
   box-shadow: none;

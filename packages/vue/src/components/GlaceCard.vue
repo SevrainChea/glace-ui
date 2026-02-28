@@ -4,7 +4,7 @@
  *
  * @example
  * ```vue
- * <GlaceCard blur-intensity="strong" elevation="floating" hoverable>
+ * <GlaceCard blur-intensity="strong" elevation="floating">
  *   <template #header>Title</template>
  *   Card content here
  *   <template #footer>Footer</template>
@@ -19,7 +19,6 @@ import type { GlaceCardProps } from './types'
 const props = withDefaults(defineProps<GlaceCardProps>(), {
   blurIntensity: 'medium',
   elevation: 'raised',
-  hoverable: false,
   radius: 'md',
   as: 'div',
 })
@@ -31,16 +30,13 @@ const slots = useSlots()
 const classes = computed(() => [
   'glace-card',
   'glace-glass',
-  props.hoverable && 'glace-card--hoverable',
   props.elevation !== 'raised' && `glace-card--${props.elevation}`,
   props.blurIntensity === 'subtle' && 'glace-card--blur-subtle',
   props.blurIntensity === 'strong' && 'glace-card--blur-strong',
   props.radius !== 'md' && `glace-card--radius-${props.radius}`,
 ])
 
-if (props.hoverable) {
-  useGlaceLight(rootRef)
-}
+useGlaceLight(rootRef)
 
 defineExpose({ rootRef })
 </script>

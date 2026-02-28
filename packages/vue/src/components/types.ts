@@ -4,8 +4,6 @@ export interface GlaceCardProps {
   blurIntensity?: 'subtle' | 'medium' | 'strong'
   /** Shadow elevation */
   elevation?: 'flat' | 'raised' | 'floating'
-  /** Enable hover effect */
-  hoverable?: boolean
   /** Border radius size */
   radius?: 'sm' | 'md' | 'lg' | 'full'
   /** HTML element tag to render as */
