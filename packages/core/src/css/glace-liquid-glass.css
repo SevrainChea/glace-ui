@@ -10,7 +10,7 @@
   background:
     radial-gradient(
       circle 8px at var(--glace-light-x) var(--glace-light-y),
-      rgba(255, 255, 255, calc(var(--glace-specular-intensity) * 2)),
+      rgba(255, 255, 255, calc(var(--glace-specular-intensity) * 2.5)),
       transparent 100%
     ),
     radial-gradient(
