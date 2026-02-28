@@ -64,4 +64,29 @@ describe('GlaceModal', () => {
     expect(wrapper.find('.glace-modal__header').text()).toContain('Title')
     expect(wrapper.find('.glace-modal__footer').text()).toBe('Actions')
   })
+
+  it('applies blur-subtle modifier class to content', () => {
+    const wrapper = mount(GlaceModal, {
+      props: { modelValue: true, blurIntensity: 'subtle' },
+      global: { stubs: { teleport: true } },
+    })
+    expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-subtle')
+  })
+
+  it('applies blur-medium modifier class to content', () => {
+    const wrapper = mount(GlaceModal, {
+      props: { modelValue: true, blurIntensity: 'medium' },
+      global: { stubs: { teleport: true } },
+    })
+    expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-medium')
+  })
+
+  it('does not apply blur modifier class for strong (default)', () => {
+    const wrapper = mount(GlaceModal, {
+      props: { modelValue: true, blurIntensity: 'strong' },
+      global: { stubs: { teleport: true } },
+    })
+    expect(wrapper.find('.glace-modal__content').classes()).not.toContain('glace-modal__content--blur-subtle')
+    expect(wrapper.find('.glace-modal__content').classes()).not.toContain('glace-modal__content--blur-medium')
+  })
 })

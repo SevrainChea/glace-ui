@@ -17,6 +17,7 @@ import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceModalProps } from './types'
 
 const props = withDefaults(defineProps<GlaceModalProps>(), {
+  blurIntensity: 'strong',
   size: 'md',
   closeOnOverlay: true,
 })
@@ -97,7 +98,16 @@ onUnmounted(() => {
       @click="onOverlayClick"
       @keydown="onKeydown"
     >
-      <div ref="contentRef" :class="['glace-modal__content', 'glace-glass', `glace-modal__content--${size}`]">
+      <div
+          ref="contentRef"
+          :class="[
+            'glace-modal__content',
+            'glace-glass',
+            `glace-modal__content--${size}`,
+            blurIntensity === 'subtle' && 'glace-modal__content--blur-subtle',
+            blurIntensity === 'medium' && 'glace-modal__content--blur-medium',
+          ]"
+        >
         <div v-if="slots.header" class="glace-modal__header">
           <slot name="header" />
           <button class="glace-modal__close" type="button" aria-label="Close" @click="close">
