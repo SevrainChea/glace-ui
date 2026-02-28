@@ -31,7 +31,7 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 - **Tokens** (`src/tokens/`): Design tokens as TypeScript objects (`GlaceTokens` type) with three presets: `glaceTokens` (default), `glaceTokensLight`, `glaceTokensDark`. Tokens map 1:1 to `--glace-*` CSS custom properties.
 - **Utils** (`src/utils/`): `getContrastColor()`, `generateGlaceGradient()`, `createGlaceTheme()`. Pure functions, no DOM dependency.
 - **CSS** (`src/css/`): 8 BEM component stylesheets using only `var(--glace-*)` references. Never hardcode values. Every component includes `backdrop-filter` + `-webkit-backdrop-filter` + `@supports` fallback.
-- **CSS Build**: `scripts/build-css.mjs` concatenates individual CSS files into `dist/index.css` (runs after tsdown).
+- **CSS Build**: `scripts/build-css.mjs` concatenates individual CSS files into `dist/index.css` (runs after tsdown). **When adding a new component CSS file, you MUST add it to the `files` array in `packages/core/scripts/build-css.mjs` or it will be excluded from the published bundle.**
 - **`injectGlaceTokens()`**: Sets CSS custom properties on an element (default `:root`). This is how tokens connect to CSS.
 
 ### @glace-ui/vue

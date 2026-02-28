@@ -7,6 +7,7 @@ useGlaceTheme()
 const showModal = ref(false)
 const inputValue = ref('')
 const errorInputValue = ref('bad input')
+const selectValue = ref<string | number | null>(null)
 </script>
 
 <template>
@@ -101,6 +102,40 @@ const errorInputValue = ref('bad input')
           />
           <GlaceInput
             placeholder="Disabled input"
+            disabled
+          />
+        </div>
+      </section>
+
+      <!-- Select Section -->
+      <section class="section">
+        <h2 class="section-title">GlaceSelect</h2>
+        <div class="input-grid">
+          <GlaceSelect
+            v-model="selectValue"
+            :options="[
+              { label: 'Apple', value: 'apple' },
+              { label: 'Banana', value: 'banana' },
+              { label: 'Cherry', value: 'cherry' },
+              { label: 'Durian (unavailable)', value: 'durian', disabled: true },
+              { label: 'Elderberry', value: 'elderberry' },
+            ]"
+            placeholder="Pick a fruit…"
+          />
+          <GlaceSelect
+            :options="[
+              { label: 'Option A', value: 'a' },
+              { label: 'Option B', value: 'b' },
+            ]"
+            placeholder="Error state"
+            error="This field is required"
+          />
+          <GlaceSelect
+            :options="[
+              { label: 'Option A', value: 'a' },
+              { label: 'Option B', value: 'b' },
+            ]"
+            placeholder="Disabled select"
             disabled
           />
         </div>
