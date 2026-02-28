@@ -3,13 +3,13 @@ import { mount } from '@vue/test-utils'
 import GlaceChatBubble from '../components/GlaceChatBubble.vue'
 
 describe('GlaceChatBubble', () => {
-  it('renders with default received variant', () => {
+  it('renders with default received direction', () => {
     const wrapper = mount(GlaceChatBubble, { slots: { default: 'Hello' } })
     expect(wrapper.classes()).toContain('glace-chat-bubble--received')
   })
 
-  it('applies sent variant', () => {
-    const wrapper = mount(GlaceChatBubble, { props: { variant: 'sent' }, slots: { default: 'Hello' } })
+  it('applies sent direction class', () => {
+    const wrapper = mount(GlaceChatBubble, { props: { direction: 'sent' }, slots: { default: 'Hello' } })
     expect(wrapper.classes()).toContain('glace-chat-bubble--sent')
   })
 

@@ -4,7 +4,7 @@
  *
  * @example
  * ```vue
- * <GlaceChatBubble variant="sent" timestamp="12:34 PM">
+ * <GlaceChatBubble direction="sent" timestamp="12:34 PM">
  *   Hello, world!
  * </GlaceChatBubble>
  * ```
@@ -15,7 +15,7 @@ import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceChatBubbleProps } from './types'
 
 const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
-  variant: 'received',
+  direction: 'received',
   timestamp: undefined,
 })
 
@@ -23,7 +23,7 @@ const contentRef = ref<HTMLElement | null>(null)
 
 const classes = computed(() => [
   'glace-chat-bubble',
-  `glace-chat-bubble--${props.variant}`,
+  `glace-chat-bubble--${props.direction}`,
 ])
 
 useGlaceLight(contentRef)
