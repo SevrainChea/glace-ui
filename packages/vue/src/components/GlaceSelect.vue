@@ -27,11 +27,16 @@ const emit = defineEmits<{
 
 const triggerRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
+const rootRef = ref<HTMLElement | null>(null)
 const isOpen = ref(false)
 const activeIndex = ref(-1)
 const dropdownStyle = ref<Record<string, string>>({})
 
 useGlaceLight(triggerRef)
+
+const selectId = `glace-select-${Math.random().toString(36).slice(2, 9)}`
+const listboxId = `${selectId}-listbox`
+const errorId = computed(() => (props.error ? `${selectId}-error` : undefined))
 
 const selectedOption = computed(
   () => props.options.find((o) => o.value === props.modelValue) ?? null,
@@ -66,10 +71,10 @@ function open() {
   activeIndex.value = selectedEnabled?.index ?? enabledOptions.value[0]?.index ?? -1
 }
 
-function close() {
+function close(restoreFocus = true) {
   isOpen.value = false
   activeIndex.value = -1
-  triggerRef.value?.focus()
+  if (restoreFocus) triggerRef.value?.focus()
 }
 
 function toggle() {
@@ -100,11 +105,13 @@ function handleKeydown(e: KeyboardEvent) {
     case 'ArrowDown':
       e.preventDefault()
       activeIndex.value = enabled[(currentPos + 1) % enabled.length]?.index ?? activeIndex.value
+      scrollActiveIntoView()
       break
     case 'ArrowUp':
       e.preventDefault()
       activeIndex.value =
         enabled[(currentPos - 1 + enabled.length) % enabled.length]?.index ?? activeIndex.value
+      scrollActiveIntoView()
       break
     case 'Enter':
     case ' ': {
@@ -114,8 +121,10 @@ function handleKeydown(e: KeyboardEvent) {
       break
     }
     case 'Escape':
-    case 'Tab':
       close()
+      break
+    case 'Tab':
+      close(false)
       break
   }
 }
@@ -127,9 +136,18 @@ function handleScrollOrResize() {
 
 function handleClickOutside(e: MouseEvent) {
   const target = e.target as Node
-  const inTrigger = triggerRef.value?.closest('.glace-select')?.contains(target)
+  const inTrigger = rootRef.value?.contains(target)
   const inDropdown = dropdownRef.value?.contains(target)
   if (!inTrigger && !inDropdown) close()
+}
+
+function scrollActiveIntoView() {
+  const dropdown = dropdownRef.value
+  if (!dropdown) return
+  const active = dropdown.querySelector('.glace-select__option--active') as HTMLElement | null
+  if (active && typeof active.scrollIntoView === 'function') {
+    active.scrollIntoView({ block: 'nearest' })
+  }
 }
 
 onMounted(() => {
@@ -155,7 +173,7 @@ defineExpose({ triggerRef })
 </script>
 
 <template>
-  <div :class="rootClasses">
+  <div ref="rootRef" :class="rootClasses">
     <div
       ref="triggerRef"
       class="glace-select__trigger"
@@ -163,6 +181,9 @@ defineExpose({ triggerRef })
       tabindex="0"
       :aria-expanded="isOpen"
       :aria-disabled="disabled || undefined"
+      aria-haspopup="listbox"
+      :aria-controls="listboxId"
+      :aria-describedby="errorId"
       @click="toggle"
       @keydown="handleKeydown"
     >
@@ -172,11 +193,12 @@ defineExpose({ triggerRef })
       </slot>
       <span class="glace-select__chevron" aria-hidden="true">›</span>
     </div>
-    <p v-if="error" class="glace-select__error-text" role="alert">{{ error }}</p>
+    <p v-if="error" :id="errorId" class="glace-select__error-text" role="alert">{{ error }}</p>
 
     <Teleport to="body">
       <ul
         v-if="isOpen"
+        :id="listboxId"
         ref="dropdownRef"
         class="glace-select__dropdown"
         role="listbox"

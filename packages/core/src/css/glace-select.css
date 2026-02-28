@@ -17,7 +17,6 @@
   font-size: 0.875rem;
   cursor: pointer;
   user-select: none;
-  position: relative;
   overflow: hidden;
   backdrop-filter: blur(var(--glace-blur-subtle));
   -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
