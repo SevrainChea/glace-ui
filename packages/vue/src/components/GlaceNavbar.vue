@@ -42,11 +42,13 @@ onUnmounted(() => {
   }
 })
 
+const showTransparent = computed(() => (props.transparent || props.blurOnScroll) && !isScrolled.value)
+
 const classes = computed(() => [
   'glace-navbar',
-  !(props.transparent && !isScrolled.value) && 'glace-glass',
+  !showTransparent.value && 'glace-glass',
   props.sticky && 'glace-navbar--sticky',
-  props.transparent && !isScrolled.value && 'glace-navbar--transparent',
+  showTransparent.value && 'glace-navbar--transparent',
   props.blurOnScroll && isScrolled.value && 'glace-navbar--scrolled',
 ])
 
