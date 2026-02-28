@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm build              # Build all packages (turbo, respects dependency order: core → vue → apps)
-pnpm test               # Run all tests (turbo, requires build first)
+pnpm build              # Build all packages (respects dependency order: core → vue → apps)
+pnpm test               # Run all tests (requires build first)
 pnpm lint               # ESLint across monorepo
 pnpm typecheck          # TypeScript strict check all packages
 
@@ -42,7 +42,6 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 
 ### Build tooling
 - **tsdown** (rolldown-powered): All packages use `tsdown.config.ts` producing ESM + CJS + DTS.
-- **Turbo**: Orchestrates build/test/typecheck with dependency awareness. Tests depend on build.
 - **pnpm workspaces**: `workspace:*` protocol links packages.
 
 ## Key Conventions
