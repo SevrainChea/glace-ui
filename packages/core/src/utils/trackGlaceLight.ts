@@ -1,5 +1,5 @@
 export interface TrackGlaceLightOptions {
-  /** Intensity multiplier (default 1) — higher values spread the light further */
+  /** Intensity multiplier for coordinate scaling (default 1). Must be a positive number — values ≤ 0 will pin the specular to the top-left corner. */
   intensity?: number
 }
 

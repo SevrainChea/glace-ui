@@ -95,6 +95,38 @@ describe('trackGlaceLight', () => {
     cleanup()
   })
 
+  it('scales coordinates by intensity multiplier', async () => {
+    const cleanup = trackGlaceLight(element, { intensity: 0.5 })
+
+    // clientX: 200, clientY: 150 → raw 50%, 50% → scaled by 0.5 → 25%, 25%
+    const event = new MouseEvent('mousemove', { clientX: 200, clientY: 150 })
+    element.dispatchEvent(event)
+
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    expect(element.style.getPropertyValue('--glace-light-x')).toBe('25%')
+    expect(element.style.getPropertyValue('--glace-light-y')).toBe('25%')
+
+    cleanup()
+  })
+
+  it('throttles multiple mousemove events within one rAF frame', async () => {
+    const spy = vi.spyOn(element.style, 'setProperty')
+    const cleanup = trackGlaceLight(element)
+
+    // Dispatch two mousemove events before the rAF frame fires
+    element.dispatchEvent(new MouseEvent('mousemove', { clientX: 200, clientY: 150 }))
+    element.dispatchEvent(new MouseEvent('mousemove', { clientX: 210, clientY: 160 }))
+
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+
+    // Only 2 setProperty calls (once for x, once for y) — second event was throttled
+    expect(spy).toHaveBeenCalledTimes(2)
+
+    spy.mockRestore()
+    cleanup()
+  })
+
   it('removes is-lit class on mouseleave', () => {
     const cleanup = trackGlaceLight(element)
 
