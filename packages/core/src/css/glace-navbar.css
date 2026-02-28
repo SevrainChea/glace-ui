@@ -74,7 +74,9 @@
 }
 
 @supports not (backdrop-filter: blur(1px)) {
-  .glace-navbar {
+  .glace-navbar,
+  .glace-navbar--blur-subtle,
+  .glace-navbar--blur-strong {
     background: rgba(30, 30, 30, 0.92);
   }
 }
