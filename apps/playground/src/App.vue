@@ -27,7 +27,7 @@ const errorInputValue = ref('bad input')
     <main class="content">
       <header class="hero">
         <h1>GlaceUI Playground</h1>
-        <p>A showcase of all 8 glassmorphism components</p>
+        <p>A showcase of all 8 liquid glass components</p>
       </header>
 
       <!-- Cards Section -->
@@ -113,7 +113,7 @@ const errorInputValue = ref('bad input')
             Hey! Have you seen the new GlaceUI components?
           </GlaceChatBubble>
           <GlaceChatBubble variant="sent" timestamp="10:43 AM">
-            Yes, the glassmorphism effects look amazing!
+            Yes, the liquid glass effects look amazing!
           </GlaceChatBubble>
           <GlaceChatBubble variant="received" timestamp="10:44 AM">
             Right? The blur and transparency really pop on dark backgrounds.
@@ -147,7 +147,7 @@ const errorInputValue = ref('bad input')
 
         <GlaceModal v-model="showModal" size="md" close-on-overlay>
           <template #header>GlaceUI Modal</template>
-          <p>This is a glassmorphism modal with backdrop blur, focus trapping, and Escape key support.</p>
+          <p>This is a liquid glass modal with backdrop blur, focus trapping, and Escape key support.</p>
           <p>Click the overlay or press Escape to close.</p>
           <template #footer>
             <div class="modal-footer-actions">

@@ -1,6 +1,6 @@
 # GlaceUI
 
-A glassmorphism component library with framework-agnostic CSS tokens and Vue 3 bindings.
+A liquid glass component library with framework-agnostic CSS tokens and Vue 3 bindings.
 
 ## Packages
 
@@ -34,7 +34,7 @@ createApp(App).use(GlacePlugin).mount('#app')
 <template>
   <GlaceCard hoverable elevation="floating">
     <template #header>Welcome</template>
-    Beautiful glassmorphism content
+    Beautiful liquid glass content
   </GlaceCard>
 </template>
 ```

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism badge for labels and tags.
+ * A liquid glass badge for labels and tags.
  *
  * @example
  * ```vue

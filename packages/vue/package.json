@@ -1,7 +1,7 @@
 {
   "name": "@glace-ui/vue",
   "version": "0.0.4",
-  "description": "Vue 3 glassmorphism component library",
+  "description": "Vue 3 liquid glass component library",
   "type": "module",
   "exports": {
     ".": {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism avatar with image, fallback, and status indicator.
+ * A liquid glass avatar with image, fallback, and status indicator.
  *
  * @example
  * ```vue

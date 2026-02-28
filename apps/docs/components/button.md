@@ -1,6 +1,6 @@
 # GlaceButton
 
-An interactive button with glassmorphism styling, supporting loading states and multiple visual variants.
+An interactive button with liquid glass styling, supporting loading states and multiple visual variants.
 
 ## Import
 

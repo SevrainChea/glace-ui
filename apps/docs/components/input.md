@@ -1,6 +1,6 @@
 # GlaceInput
 
-A text input field with glassmorphism styling, supporting icons, suffixes, and error states.
+A text input field with liquid glass styling, supporting icons, suffixes, and error states.
 
 ## Import
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism modal dialog with focus trap, Escape key, and overlay click.
+ * A liquid glass modal dialog with focus trap, Escape key, and overlay click.
  *
  * @example
  * ```vue

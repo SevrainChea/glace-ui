@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism card container with configurable blur, elevation, and radius.
+ * A liquid glass card container with configurable blur, elevation, and radius.
  *
  * @example
  * ```vue

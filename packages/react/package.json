@@ -1,7 +1,7 @@
 {
   "name": "@glace-ui/react",
   "version": "0.0.0",
-  "description": "React glassmorphism component library (coming soon)",
+  "description": "React liquid glass component library (coming soon)",
   "type": "module",
   "exports": {
     ".": {

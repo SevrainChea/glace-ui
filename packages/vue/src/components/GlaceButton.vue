@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism button with loading state and variants.
+ * A liquid glass button with loading state and variants.
  *
  * @example
  * ```vue

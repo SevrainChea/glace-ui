@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism chat bubble for messaging UIs.
+ * A liquid glass chat bubble for messaging UIs.
  *
  * @example
  * ```vue

@@ -1,6 +1,6 @@
 # GlaceNavbar
 
-A navigation bar with glassmorphism effect that supports sticky positioning and scroll-aware blur transitions.
+A navigation bar with liquid glass effect that supports sticky positioning and scroll-aware blur transitions.
 
 ## Import
 

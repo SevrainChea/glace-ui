@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism text input with icon/suffix slots and error state.
+ * A liquid glass text input with icon/suffix slots and error state.
  *
  * @example
  * ```vue

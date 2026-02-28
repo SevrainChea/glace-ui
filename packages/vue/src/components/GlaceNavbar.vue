@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * A glassmorphism navigation bar with scroll-aware blur.
+ * A liquid glass navigation bar with scroll-aware blur.
  *
  * @example
  * ```vue

@@ -3,7 +3,7 @@ import llmstxt from 'vitepress-plugin-llms'
 
 export default defineConfig({
   title: 'GlaceUI',
-  description: 'A glassmorphism component library for Vue 3',
+  description: 'A liquid glass component library for Vue 3',
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },

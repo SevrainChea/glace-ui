@@ -1,6 +1,6 @@
 # GlaceModal
 
-A dialog overlay with glassmorphism styling, supporting multiple sizes and accessible keyboard interactions.
+A dialog overlay with liquid glass styling, supporting multiple sizes and accessible keyboard interactions.
 
 ## Import
 

@@ -1,6 +1,6 @@
 # GlaceAvatar
 
-A circular avatar component with glassmorphism styling, supporting images, fallback initials, and online status indicators.
+A circular avatar component with liquid glass styling, supporting images, fallback initials, and online status indicators.
 
 ## Import
 

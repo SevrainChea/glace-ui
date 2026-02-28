@@ -1,6 +1,6 @@
 # GlaceCard
 
-A glassmorphism card container with frosted-glass effect, configurable blur intensity, elevation, and hover interactions.
+A liquid glass card container with frosted-glass effect, configurable blur intensity, elevation, and hover interactions.
 
 ## Import
 

@@ -1,6 +1,6 @@
 # GlaceChatBubble
 
-A chat message bubble with glassmorphism styling, supporting sent and received message variants with timestamps and avatars.
+A chat message bubble with liquid glass styling, supporting sent and received message variants with timestamps and avatars.
 
 ## Import
 

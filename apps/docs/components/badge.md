@@ -1,6 +1,6 @@
 # GlaceBadge
 
-A small label component for status indicators, tags, or counts with glassmorphism styling.
+A small label component for status indicators, tags, or counts with liquid glass styling.
 
 ## Import
 
