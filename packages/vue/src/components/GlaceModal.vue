@@ -99,15 +99,15 @@ onUnmounted(() => {
       @keydown="onKeydown"
     >
       <div
-          ref="contentRef"
-          :class="[
-            'glace-modal__content',
-            'glace-glass',
-            `glace-modal__content--${size}`,
-            blurIntensity === 'subtle' && 'glace-modal__content--blur-subtle',
-            blurIntensity === 'medium' && 'glace-modal__content--blur-medium',
-          ]"
-        >
+        ref="contentRef"
+        :class="[
+          'glace-modal__content',
+          'glace-glass',
+          `glace-modal__content--${size}`,
+          blurIntensity === 'subtle' && 'glace-modal__content--blur-subtle',
+          blurIntensity === 'medium' && 'glace-modal__content--blur-medium',
+        ]"
+      >
         <div v-if="slots.header" class="glace-modal__header">
           <slot name="header" />
           <button class="glace-modal__close" type="button" aria-label="Close" @click="close">
