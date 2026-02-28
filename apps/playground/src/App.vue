@@ -19,7 +19,7 @@ const errorInputValue = ref('bad input')
       <template #actions>
         <GlaceButton variant="ghost" size="sm">Docs</GlaceButton>
         <GlaceButton variant="ghost" size="sm">GitHub</GlaceButton>
-        <GlaceButton variant="primary" size="sm">Get Started</GlaceButton>
+        <GlaceButton variant="solid" size="sm">Get Started</GlaceButton>
       </template>
     </GlaceNavbar>
 
@@ -76,13 +76,14 @@ const errorInputValue = ref('bad input')
       <section class="section">
         <h2 class="section-title">GlaceButton</h2>
         <div class="row">
-          <GlaceButton variant="primary">Primary</GlaceButton>
-          <GlaceButton variant="secondary">Secondary</GlaceButton>
+          <GlaceButton variant="solid">Solid</GlaceButton>
+          <GlaceButton variant="subtle">Subtle</GlaceButton>
+          <GlaceButton variant="outline">Outline</GlaceButton>
           <GlaceButton variant="ghost">Ghost</GlaceButton>
-          <GlaceButton variant="primary" size="lg">Large</GlaceButton>
-          <GlaceButton variant="primary" size="sm">Small</GlaceButton>
-          <GlaceButton variant="primary" loading>Loading</GlaceButton>
-          <GlaceButton variant="secondary" disabled>Disabled</GlaceButton>
+          <GlaceButton variant="solid" size="lg">Large</GlaceButton>
+          <GlaceButton variant="solid" size="sm">Small</GlaceButton>
+          <GlaceButton variant="solid" loading>Loading</GlaceButton>
+          <GlaceButton variant="subtle" disabled>Disabled</GlaceButton>
         </div>
       </section>
 
@@ -109,13 +110,13 @@ const errorInputValue = ref('bad input')
       <section class="section">
         <h2 class="section-title">GlaceChatBubble</h2>
         <div class="chat-container">
-          <GlaceChatBubble variant="received" timestamp="10:42 AM">
+          <GlaceChatBubble direction="received" timestamp="10:42 AM">
             Hey! Have you seen the new GlaceUI components?
           </GlaceChatBubble>
-          <GlaceChatBubble variant="sent" timestamp="10:43 AM">
+          <GlaceChatBubble direction="sent" timestamp="10:43 AM">
             Yes, the liquid glass effects look amazing!
           </GlaceChatBubble>
-          <GlaceChatBubble variant="received" timestamp="10:44 AM">
+          <GlaceChatBubble direction="received" timestamp="10:44 AM">
             Right? The blur and transparency really pop on dark backgrounds.
           </GlaceChatBubble>
         </div>
@@ -141,7 +142,7 @@ const errorInputValue = ref('bad input')
       <!-- Modal Section -->
       <section class="section">
         <h2 class="section-title">GlaceModal</h2>
-        <GlaceButton variant="primary" @click="showModal = true">
+        <GlaceButton variant="solid" @click="showModal = true">
           Open Modal
         </GlaceButton>
 
@@ -152,7 +153,7 @@ const errorInputValue = ref('bad input')
           <template #footer>
             <div class="modal-footer-actions">
               <GlaceButton variant="ghost" @click="showModal = false">Cancel</GlaceButton>
-              <GlaceButton variant="primary" @click="showModal = false">Confirm</GlaceButton>
+              <GlaceButton variant="solid" @click="showModal = false">Confirm</GlaceButton>
             </div>
           </template>
         </GlaceModal>
