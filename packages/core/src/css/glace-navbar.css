@@ -23,7 +23,7 @@
 
 .glace-navbar--transparent {
   background: transparent;
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
