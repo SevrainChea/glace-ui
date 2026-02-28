@@ -1,0 +1,117 @@
+/* GlaceSelect */
+.glace-select {
+  position: relative;
+  width: 100%;
+}
+
+.glace-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  border-radius: var(--glace-radius-sm);
+  color: var(--glace-text-primary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(var(--glace-blur-subtle));
+  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glace-select__trigger:focus {
+  outline: none;
+  border-color: var(--glace-text-secondary);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  --glace-specular-intensity: 0.6;
+}
+
+.glace-select--error .glace-select__trigger {
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.glace-select--error .glace-select__trigger:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}
+
+.glace-select--disabled .glace-select__trigger {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.glace-select__placeholder {
+  color: var(--glace-text-secondary);
+}
+
+.glace-select__chevron {
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  color: var(--glace-text-secondary);
+  font-style: normal;
+  transition: transform 0.2s ease;
+}
+
+.glace-select--open .glace-select__chevron {
+  transform: rotate(90deg);
+}
+
+.glace-select__error-text {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: rgba(239, 68, 68, 0.9);
+}
+
+/* Dropdown panel — teleported to <body>, position: fixed via JS */
+.glace-select__dropdown {
+  position: fixed;
+  z-index: 9999;
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  border-radius: var(--glace-radius-sm);
+  box-shadow: var(--glace-shadow);
+  backdrop-filter: blur(var(--glace-blur));
+  -webkit-backdrop-filter: blur(var(--glace-blur));
+  overflow-y: auto;
+  max-height: 16rem;
+}
+
+.glace-select__option {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--glace-text-primary);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.glace-select__option:hover,
+.glace-select__option--active {
+  background: var(--glace-bg-hover);
+}
+
+.glace-select__option--selected {
+  font-weight: 500;
+}
+
+.glace-select__option--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.glace-select__option--disabled:hover {
+  background: transparent;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glace-select__trigger,
+  .glace-select__dropdown {
+    background: rgba(30, 30, 30, 0.85);
+  }
+}
