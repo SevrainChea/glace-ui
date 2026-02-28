@@ -1,7 +1,16 @@
+/** Canonical appearance variants shared across components */
+export type GlaceVariant = 'solid' | 'outline' | 'ghost' | 'subtle'
+
+/** Canonical size scale shared across components */
+export type GlaceSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+
+/** Blur intensity for container components */
+export type GlaceBlurIntensity = 'subtle' | 'medium' | 'strong'
+
 /** Props for GlaceCard */
 export interface GlaceCardProps {
   /** Blur intensity level */
-  blurIntensity?: 'subtle' | 'medium' | 'strong'
+  blurIntensity?: GlaceBlurIntensity
   /** Shadow elevation */
   elevation?: 'flat' | 'raised' | 'floating'
   /** Border radius size */
@@ -13,9 +22,9 @@ export interface GlaceCardProps {
 /** Props for GlaceBadge */
 export interface GlaceBadgeProps {
   /** Visual variant */
-  variant?: 'solid' | 'outline' | 'subtle'
+  variant?: GlaceVariant
   /** Badge size */
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  size?: Extract<GlaceSize, 'xs' | 'sm' | 'md' | 'lg'>
   /** Accent color (applied as CSS custom property) */
   color?: string
   /** Show remove button */
@@ -25,9 +34,11 @@ export interface GlaceBadgeProps {
 /** Props for GlaceButton */
 export interface GlaceButtonProps {
   /** Visual variant */
-  variant?: 'primary' | 'secondary' | 'ghost'
+  variant?: GlaceVariant
+  /** Accent color (applied as CSS custom property) */
+  color?: string
   /** Button size */
-  size?: 'sm' | 'md' | 'lg'
+  size?: Extract<GlaceSize, 'sm' | 'md' | 'lg'>
   /** Show loading spinner */
   loading?: boolean
   /** Disable the button */
@@ -54,6 +65,8 @@ export interface GlaceInputProps {
 
 /** Props for GlaceNavbar */
 export interface GlaceNavbarProps {
+  /** Blur intensity level */
+  blurIntensity?: GlaceBlurIntensity
   /** Stick to top on scroll */
   sticky?: boolean
   /** Enable blur on scroll (transparent at top, blurred when scrolled) */
@@ -66,8 +79,10 @@ export interface GlaceNavbarProps {
 export interface GlaceModalProps {
   /** Visibility state (v-model) */
   modelValue: boolean
+  /** Blur intensity level */
+  blurIntensity?: GlaceBlurIntensity
   /** Modal size */
-  size?: 'sm' | 'md' | 'lg' | 'full'
+  size?: Extract<GlaceSize, 'sm' | 'md' | 'lg' | 'full'>
   /** Close when clicking overlay */
   closeOnOverlay?: boolean
 }
@@ -75,7 +90,7 @@ export interface GlaceModalProps {
 /** Props for GlaceChatBubble */
 export interface GlaceChatBubbleProps {
   /** Message direction */
-  variant?: 'sent' | 'received'
+  direction?: 'sent' | 'received'
   /** Display timestamp */
   timestamp?: string
 }
@@ -87,7 +102,7 @@ export interface GlaceAvatarProps {
   /** Alt text for the image */
   alt?: string
   /** Avatar size */
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: Extract<GlaceSize, 'sm' | 'md' | 'lg' | 'xl'>
   /** Online status indicator */
   status?: 'online' | 'offline' | 'busy' | 'away'
 }
