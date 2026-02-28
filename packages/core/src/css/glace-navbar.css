@@ -63,6 +63,16 @@
   display: none;
 }
 
+.glace-navbar--blur-subtle {
+  backdrop-filter: blur(var(--glace-blur-subtle));
+  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+}
+
+.glace-navbar--blur-strong {
+  backdrop-filter: blur(var(--glace-blur-intense));
+  -webkit-backdrop-filter: blur(var(--glace-blur-intense));
+}
+
 @supports not (backdrop-filter: blur(1px)) {
   .glace-navbar {
     background: rgba(30, 30, 30, 0.92);

@@ -17,6 +17,7 @@ import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceNavbarProps } from './types'
 
 const props = withDefaults(defineProps<GlaceNavbarProps>(), {
+  blurIntensity: 'medium',
   sticky: false,
   blurOnScroll: false,
   transparent: false,
@@ -50,6 +51,8 @@ const classes = computed(() => [
   props.sticky && 'glace-navbar--sticky',
   showTransparent.value && 'glace-navbar--transparent',
   props.blurOnScroll && isScrolled.value && 'glace-navbar--scrolled',
+  props.blurIntensity === 'subtle' && 'glace-navbar--blur-subtle',
+  props.blurIntensity === 'strong' && 'glace-navbar--blur-strong',
 ])
 
 useGlaceLight(rootRef)

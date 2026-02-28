@@ -38,4 +38,20 @@ describe('GlaceNavbar', () => {
     const wrapper = mount(GlaceNavbar, { slots: { actions: '<button>Menu</button>' } })
     expect(wrapper.find('.glace-navbar__actions').text()).toBe('Menu')
   })
+
+  it('applies blur-subtle modifier class', () => {
+    const wrapper = mount(GlaceNavbar, { props: { blurIntensity: 'subtle' } })
+    expect(wrapper.classes()).toContain('glace-navbar--blur-subtle')
+  })
+
+  it('applies blur-strong modifier class', () => {
+    const wrapper = mount(GlaceNavbar, { props: { blurIntensity: 'strong' } })
+    expect(wrapper.classes()).toContain('glace-navbar--blur-strong')
+  })
+
+  it('does not apply blur modifier class for medium (default)', () => {
+    const wrapper = mount(GlaceNavbar, { props: { blurIntensity: 'medium' } })
+    expect(wrapper.classes()).not.toContain('glace-navbar--blur-subtle')
+    expect(wrapper.classes()).not.toContain('glace-navbar--blur-strong')
+  })
 })
