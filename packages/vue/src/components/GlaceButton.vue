@@ -4,7 +4,7 @@
  *
  * @example
  * ```vue
- * <GlaceButton variant="primary" size="lg" :loading="saving" @click="save">
+ * <GlaceButton variant="solid" size="lg" :loading="saving" @click="save">
  *   Save Changes
  * </GlaceButton>
  * ```
@@ -15,7 +15,7 @@ import { useGlaceLight } from './useGlaceLight.js'
 import type { GlaceButtonProps } from './types'
 
 const props = withDefaults(defineProps<GlaceButtonProps>(), {
-  variant: 'secondary',
+  variant: 'subtle',
   size: 'md',
   loading: false,
   disabled: false,

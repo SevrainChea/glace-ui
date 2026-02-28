@@ -6,13 +6,29 @@ describe('GlaceButton', () => {
   it('renders with default classes', () => {
     const wrapper = mount(GlaceButton, { slots: { default: 'Click' } })
     expect(wrapper.classes()).toContain('glace-button')
-    expect(wrapper.classes()).toContain('glace-button--secondary')
+    expect(wrapper.classes()).toContain('glace-button--subtle')
     expect(wrapper.classes()).toContain('glace-button--md')
   })
 
-  it('applies variant class', () => {
-    const wrapper = mount(GlaceButton, { props: { variant: 'primary' }, slots: { default: 'Click' } })
-    expect(wrapper.classes()).toContain('glace-button--primary')
+  it('applies solid variant class', () => {
+    const wrapper = mount(GlaceButton, { props: { variant: 'solid' }, slots: { default: 'Click' } })
+    expect(wrapper.classes()).toContain('glace-button--solid')
+  })
+
+  it('applies outline variant class', () => {
+    const wrapper = mount(GlaceButton, { props: { variant: 'outline' }, slots: { default: 'Click' } })
+    expect(wrapper.classes()).toContain('glace-button--outline')
+  })
+
+  it('applies ghost variant class and omits glace-glass', () => {
+    const wrapper = mount(GlaceButton, { props: { variant: 'ghost' }, slots: { default: 'Click' } })
+    expect(wrapper.classes()).toContain('glace-button--ghost')
+    expect(wrapper.classes()).not.toContain('glace-glass')
+  })
+
+  it('applies subtle variant class', () => {
+    const wrapper = mount(GlaceButton, { props: { variant: 'subtle' }, slots: { default: 'Click' } })
+    expect(wrapper.classes()).toContain('glace-button--subtle')
   })
 
   it('applies size class', () => {

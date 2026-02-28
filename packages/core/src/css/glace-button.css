@@ -36,16 +36,27 @@
   cursor: not-allowed;
 }
 
-.glace-button--primary {
+.glace-button--solid {
   background: var(--glace-bg-hover);
   box-shadow: var(--glace-shadow);
 }
 
-.glace-button--primary:hover:not(:disabled) {
+.glace-button--solid:hover:not(:disabled) {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
 }
 
-.glace-button--secondary {
+.glace-button--subtle {
+  background: var(--glace-bg);
+}
+
+.glace-button--outline {
+  background: transparent;
+  border-color: var(--glace-border);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.glace-button--outline:hover:not(:disabled) {
   background: var(--glace-bg);
 }
 
