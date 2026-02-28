@@ -71,15 +71,6 @@
   border-top: var(--glace-border-width) solid var(--glace-border);
 }
 
-.glace-card--hoverable:hover::before {
-  background: radial-gradient(
-    ellipse var(--glace-specular-size) var(--glace-specular-size)
-      at var(--glace-light-x) var(--glace-light-y),
-    rgba(255, 255, 255, calc(var(--glace-specular-intensity) + 0.1)),
-    transparent
-  );
-}
-
 @supports not (backdrop-filter: blur(1px)) {
   .glace-card {
     background: rgba(30, 30, 30, 0.85);
