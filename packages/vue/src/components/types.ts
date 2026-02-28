@@ -106,3 +106,27 @@ export interface GlaceAvatarProps {
   /** Online status indicator */
   status?: 'online' | 'offline' | 'busy' | 'away'
 }
+
+/** A single option in GlaceSelect */
+export interface GlaceSelectOption {
+  /** Display label */
+  label: string
+  /** Emitted value */
+  value: string | number
+  /** Prevent selection */
+  disabled?: boolean
+}
+
+/** Props for GlaceSelect */
+export interface GlaceSelectProps {
+  /** Bound value (v-model) */
+  modelValue?: string | number | null
+  /** Options array */
+  options?: GlaceSelectOption[]
+  /** Placeholder text when no value selected */
+  placeholder?: string
+  /** Disable the select */
+  disabled?: boolean
+  /** Error message (shows error state when set) */
+  error?: string
+}
