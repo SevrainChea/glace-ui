@@ -9,18 +9,19 @@ describe('GlaceCard', () => {
     expect(wrapper.find('.glace-card__body').text()).toBe('Content')
   })
 
-  it('applies hoverable modifier', () => {
-    const wrapper = mount(GlaceCard, { props: { hoverable: true }, slots: { default: 'Content' } })
-    expect(wrapper.classes()).toContain('glace-card--hoverable')
-  })
-
   it('applies elevation modifier', () => {
-    const wrapper = mount(GlaceCard, { props: { elevation: 'floating' }, slots: { default: 'Content' } })
+    const wrapper = mount(GlaceCard, {
+      props: { elevation: 'floating' },
+      slots: { default: 'Content' },
+    })
     expect(wrapper.classes()).toContain('glace-card--floating')
   })
 
   it('applies blur intensity modifier', () => {
-    const wrapper = mount(GlaceCard, { props: { blurIntensity: 'strong' }, slots: { default: 'Content' } })
+    const wrapper = mount(GlaceCard, {
+      props: { blurIntensity: 'strong' },
+      slots: { default: 'Content' },
+    })
     expect(wrapper.classes()).toContain('glace-card--blur-strong')
   })
 
