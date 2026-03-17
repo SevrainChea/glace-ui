@@ -33,17 +33,16 @@ export interface GlaceSelectProps {
 
 **Slots:**
 
-| Slot | Scoped props | Purpose |
-|---|---|---|
-| `#trigger` | `{ selected: GlaceSelectOption \| null, placeholder: string }` | Replace the trigger display |
-| `#option` | `{ option: GlaceSelectOption, selected: boolean, active: boolean }` | Replace each option's content |
+| Slot       | Scoped props                                                        | Purpose                       |
+| ---------- | ------------------------------------------------------------------- | ----------------------------- |
+| `#trigger` | `{ selected: GlaceSelectOption \| null, placeholder: string }`      | Replace the trigger display   |
+| `#option`  | `{ option: GlaceSelectOption, selected: boolean, active: boolean }` | Replace each option's content |
 
 ## DOM structure
 
 ```html
 <!-- Root (inline, position: relative) -->
 <div class="glace-select [--open] [--error] [--disabled]">
-
   <!-- Trigger -->
   <div class="glace-select__trigger glace-glass" role="combobox" aria-expanded="...">
     <slot name="trigger" :selected="selectedOption" :placeholder="placeholder">
@@ -56,15 +55,12 @@ export interface GlaceSelectProps {
 
   <!-- Error message -->
   <p class="glace-select__error-text" role="alert">…</p>
-
 </div>
 
 <!-- Teleported to <body> -->
 <ul class="glace-select__dropdown glace-glass" role="listbox">
   <li class="glace-select__option [--selected] [--active] [--disabled]" role="option">
-    <slot name="option" :option="option" :selected="..." :active="...">
-      Apple
-    </slot>
+    <slot name="option" :option="option" :selected="..." :active="..."> Apple </slot>
   </li>
 </ul>
 ```
@@ -85,15 +81,15 @@ On scroll or window resize, the dropdown closes (v1 simplification).
 
 ## Keyboard navigation
 
-| Key | Behaviour |
-|---|---|
-| `Enter` / `Space` on trigger | Open |
-| `Arrow Down` | Next option (wraps); opens if closed |
-| `Arrow Up` | Previous option (wraps) |
-| `Enter` on active option | Select + close |
-| `Escape` | Close, return focus to trigger |
-| `Tab` | Close |
-| Click outside | Close |
+| Key                          | Behaviour                            |
+| ---------------------------- | ------------------------------------ |
+| `Enter` / `Space` on trigger | Open                                 |
+| `Arrow Down`                 | Next option (wraps); opens if closed |
+| `Arrow Up`                   | Previous option (wraps)              |
+| `Enter` on active option     | Select + close                       |
+| `Escape`                     | Close, return focus to trigger       |
+| `Tab`                        | Close                                |
+| Click outside                | Close                                |
 
 Active option (keyboard cursor) is tracked separately from selected value. Navigating with arrows does not commit the change — only `Enter` does. Disabled options are skipped during keyboard navigation.
 
@@ -101,22 +97,22 @@ On open, active option initialises to the currently selected option, or the firs
 
 ## BEM classes
 
-| Class | Purpose |
-|---|---|
-| `.glace-select` | Root wrapper |
-| `.glace-select--open` | Dropdown is open |
-| `.glace-select--error` | Error state |
-| `.glace-select--disabled` | Disabled state |
-| `.glace-select__trigger` | Clickable trigger |
-| `.glace-select__value` | Selected label text |
-| `.glace-select__placeholder` | Placeholder text (no selection) |
-| `.glace-select__chevron` | Dropdown arrow icon |
-| `.glace-select__error-text` | Error message below trigger |
-| `.glace-select__dropdown` | Teleported panel |
-| `.glace-select__option` | Individual option row |
-| `.glace-select__option--selected` | Currently selected value |
-| `.glace-select__option--active` | Keyboard-focused option |
-| `.glace-select__option--disabled` | Non-selectable option |
+| Class                             | Purpose                         |
+| --------------------------------- | ------------------------------- |
+| `.glace-select`                   | Root wrapper                    |
+| `.glace-select--open`             | Dropdown is open                |
+| `.glace-select--error`            | Error state                     |
+| `.glace-select--disabled`         | Disabled state                  |
+| `.glace-select__trigger`          | Clickable trigger               |
+| `.glace-select__value`            | Selected label text             |
+| `.glace-select__placeholder`      | Placeholder text (no selection) |
+| `.glace-select__chevron`          | Dropdown arrow icon             |
+| `.glace-select__error-text`       | Error message below trigger     |
+| `.glace-select__dropdown`         | Teleported panel                |
+| `.glace-select__option`           | Individual option row           |
+| `.glace-select__option--selected` | Currently selected value        |
+| `.glace-select__option--active`   | Keyboard-focused option         |
+| `.glace-select__option--disabled` | Non-selectable option           |
 
 ## Future extensibility
 

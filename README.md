@@ -4,11 +4,11 @@ A liquid glass component library with framework-agnostic CSS tokens and Vue 3 bi
 
 ## Packages
 
-| Package | Description |
-|---------|-------------|
-| `@glace-ui/core` | CSS + TypeScript tokens and utilities |
-| `@glace-ui/vue` | Vue 3 component bindings |
-| `@glace-ui/react` | React bindings (coming soon) |
+| Package           | Description                           |
+| ----------------- | ------------------------------------- |
+| `@glace-ui/core`  | CSS + TypeScript tokens and utilities |
+| `@glace-ui/vue`   | Vue 3 component bindings              |
+| `@glace-ui/react` | React bindings (coming soon)          |
 
 ## Installation
 

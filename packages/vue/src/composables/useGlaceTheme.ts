@@ -39,7 +39,9 @@ export function useGlaceTheme(options?: GlaceThemeOptions): GlaceThemeReturn {
   const overrides = ref<Partial<GlaceTokens>>(options?.tokens ?? {})
 
   const tokens = computed<GlaceTokens>(() => {
-    const base = isDark.value ? { ...glaceTokens, ...glaceTokensDark } : { ...glaceTokens, ...glaceTokensLight }
+    const base = isDark.value
+      ? { ...glaceTokens, ...glaceTokensDark }
+      : { ...glaceTokens, ...glaceTokensLight }
     return { ...base, ...overrides.value }
   })
 
@@ -52,11 +54,15 @@ export function useGlaceTheme(options?: GlaceThemeOptions): GlaceThemeReturn {
   }
 
   // Inject CSS custom properties into the document whenever tokens change
-  watch(tokens, (t) => {
-    if (typeof document !== 'undefined') {
-      injectGlaceTokens(t)
-    }
-  }, { immediate: true })
+  watch(
+    tokens,
+    (t) => {
+      if (typeof document !== 'undefined') {
+        injectGlaceTokens(t)
+      }
+    },
+    { immediate: true },
+  )
 
   const themeReturn: GlaceThemeReturn = { tokens, setTheme, toggleDarkMode, isDark }
   provide(GLASS_THEME_KEY, themeReturn)

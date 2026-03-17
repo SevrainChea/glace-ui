@@ -37,7 +37,10 @@ describe('GlaceBadge', () => {
   })
 
   it('applies custom color style', () => {
-    const wrapper = mount(GlaceBadge, { props: { color: 'rgba(100,0,255,0.3)' }, slots: { default: 'Tag' } })
+    const wrapper = mount(GlaceBadge, {
+      props: { color: 'rgba(100,0,255,0.3)' },
+      slots: { default: 'Tag' },
+    })
     expect(wrapper.attributes('style')).toContain('--glace-bg')
   })
 })

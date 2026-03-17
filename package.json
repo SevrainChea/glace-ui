@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "pnpm -r --parallel run dev",
     "build": "pnpm -r run build",
+    "format": "prettier --write .",
     "lint": "eslint .",
     "test": "pnpm -r run build && pnpm -r run test",
     "typecheck": "pnpm -r run typecheck",
@@ -16,7 +17,10 @@
     "dev:link": "pnpm run build && pnpm run link:global"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "rolldown"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "rolldown"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

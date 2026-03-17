@@ -9,9 +9,7 @@ import type { GlaceTokens } from '../tokens'
  * @returns `"#000000"` for light backgrounds, `"#ffffff"` for dark backgrounds
  */
 export function getContrastColor(bgRgba: string): string {
-  const match = bgRgba.match(
-    /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/,
-  )
+  const match = bgRgba.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/)
   if (!match) return '#ffffff'
 
   const r = Number(match[1])

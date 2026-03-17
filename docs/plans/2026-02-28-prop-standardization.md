@@ -13,6 +13,7 @@
 ### Task 1: Add shared canonical types to `types.ts`
 
 **Files:**
+
 - Modify: `packages/vue/src/components/types.ts`
 
 **Step 1: Write the failing typecheck**
@@ -130,6 +131,7 @@ git commit -m "feat: add GlaceVariant, GlaceSize, GlaceBlurIntensity canonical t
 ### Task 2: Update GlaceButton CSS and component
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-button.css`
 - Modify: `packages/vue/src/components/GlaceButton.vue`
 - Modify: `packages/vue/src/__tests__/GlaceButton.test.ts`
@@ -157,7 +159,10 @@ describe('GlaceButton', () => {
   })
 
   it('applies outline variant class', () => {
-    const wrapper = mount(GlaceButton, { props: { variant: 'outline' }, slots: { default: 'Click' } })
+    const wrapper = mount(GlaceButton, {
+      props: { variant: 'outline' },
+      slots: { default: 'Click' },
+    })
     expect(wrapper.classes()).toContain('glace-button--outline')
   })
 
@@ -168,7 +173,10 @@ describe('GlaceButton', () => {
   })
 
   it('applies subtle variant class', () => {
-    const wrapper = mount(GlaceButton, { props: { variant: 'subtle' }, slots: { default: 'Click' } })
+    const wrapper = mount(GlaceButton, {
+      props: { variant: 'subtle' },
+      slots: { default: 'Click' },
+    })
     expect(wrapper.classes()).toContain('glace-button--subtle')
   })
 
@@ -207,7 +215,7 @@ Expected: FAIL — `glace-button--subtle` not found, `glace-button--secondary` s
 
 **Step 3: Update `GlaceButton.vue` — change default and ghost check**
 
-```vue
+````vue
 <script setup lang="ts">
 /**
  * A liquid glass button with loading state and variants.
@@ -248,7 +256,7 @@ if (props.hoverEffect) {
 
 defineExpose({ rootRef })
 </script>
-```
+````
 
 **Step 4: Update `glace-button.css` — rename primary/secondary, add outline/subtle**
 
@@ -315,6 +323,7 @@ git commit -m "feat!: update GlaceButton variants to solid|outline|ghost|subtle,
 ### Task 3: Update GlaceChatBubble — rename `variant` to `direction`
 
 **Files:**
+
 - Modify: `packages/vue/src/components/GlaceChatBubble.vue`
 - Modify: `packages/vue/src/__tests__/GlaceChatBubble.test.ts`
 
@@ -334,7 +343,10 @@ describe('GlaceChatBubble', () => {
   })
 
   it('applies sent direction class', () => {
-    const wrapper = mount(GlaceChatBubble, { props: { direction: 'sent' }, slots: { default: 'Hello' } })
+    const wrapper = mount(GlaceChatBubble, {
+      props: { direction: 'sent' },
+      slots: { default: 'Hello' },
+    })
     expect(wrapper.classes()).toContain('glace-chat-bubble--sent')
   })
 
@@ -344,7 +356,10 @@ describe('GlaceChatBubble', () => {
   })
 
   it('renders timestamp when provided', () => {
-    const wrapper = mount(GlaceChatBubble, { props: { timestamp: '12:30 PM' }, slots: { default: 'Hi' } })
+    const wrapper = mount(GlaceChatBubble, {
+      props: { timestamp: '12:30 PM' },
+      slots: { default: 'Hi' },
+    })
     expect(wrapper.find('.glace-chat-bubble__timestamp').text()).toBe('12:30 PM')
   })
 
@@ -369,7 +384,7 @@ Expected: FAIL — `direction` prop not found on component
 
 **Step 3: Update `GlaceChatBubble.vue` — rename `variant` to `direction`**
 
-```vue
+````vue
 <script setup lang="ts">
 /**
  * A liquid glass chat bubble for messaging UIs.
@@ -393,16 +408,13 @@ const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
 
 const contentRef = ref<HTMLElement | null>(null)
 
-const classes = computed(() => [
-  'glace-chat-bubble',
-  `glace-chat-bubble--${props.direction}`,
-])
+const classes = computed(() => ['glace-chat-bubble', `glace-chat-bubble--${props.direction}`])
 
 useGlaceLight(contentRef)
 
 defineExpose({ contentRef })
 </script>
-```
+````
 
 Keep the `<template>` block unchanged.
 
@@ -424,6 +436,7 @@ git commit -m "feat!: rename GlaceChatBubble variant prop to direction"
 ### Task 4: Update GlaceNavbar — add `blurIntensity`
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-navbar.css`
 - Modify: `packages/vue/src/components/GlaceNavbar.vue`
 - Modify: `packages/vue/src/__tests__/GlaceNavbar.test.ts`
@@ -520,6 +533,7 @@ git commit -m "feat: add blurIntensity prop to GlaceNavbar"
 ### Task 5: Update GlaceModal — add `blurIntensity`
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-modal.css`
 - Modify: `packages/vue/src/components/GlaceModal.vue`
 - Modify: `packages/vue/src/__tests__/GlaceModal.test.ts`
@@ -538,7 +552,9 @@ it('applies blur-subtle modifier class to content', () => {
     props: { modelValue: true, blurIntensity: 'subtle' },
     attachTo: document.body,
   })
-  expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-subtle')
+  expect(wrapper.find('.glace-modal__content').classes()).toContain(
+    'glace-modal__content--blur-subtle',
+  )
   wrapper.unmount()
 })
 
@@ -547,7 +563,9 @@ it('applies blur-strong modifier class to content', () => {
     props: { modelValue: true, blurIntensity: 'strong' },
     attachTo: document.body,
   })
-  expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-strong')
+  expect(wrapper.find('.glace-modal__content').classes()).toContain(
+    'glace-modal__content--blur-strong',
+  )
   wrapper.unmount()
 })
 ```
@@ -581,7 +599,7 @@ Update the content div class binding in `<template>`:
     blurIntensity === 'subtle' && 'glace-modal__content--blur-subtle',
     blurIntensity === 'medium' && 'glace-modal__content--blur-medium',
   ]"
->
+></div>
 ```
 
 Note: `strong` is the default and uses the existing `var(--glace-blur-intense)` from base CSS — no modifier class needed for it.

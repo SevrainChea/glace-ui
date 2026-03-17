@@ -13,6 +13,7 @@
 ### Task 1: Add types to `types.ts`
 
 **Files:**
+
 - Modify: `packages/vue/src/components/types.ts`
 
 **Step 1: Run baseline typecheck**
@@ -20,6 +21,7 @@
 ```bash
 pnpm --filter @glace-ui/vue typecheck
 ```
+
 Expected: PASS (confirm clean before changes)
 
 **Step 2: Add `GlaceSelectOption` and `GlaceSelectProps` to `types.ts`**
@@ -57,6 +59,7 @@ export interface GlaceSelectProps {
 ```bash
 pnpm --filter @glace-ui/vue typecheck
 ```
+
 Expected: PASS
 
 **Step 4: Commit**
@@ -71,6 +74,7 @@ git commit -m "feat: add GlaceSelectOption and GlaceSelectProps types"
 ### Task 2: Create `glace-select.css`
 
 **Files:**
+
 - Create: `packages/core/src/css/glace-select.css`
 - Modify: `packages/core/src/css/index.css`
 
@@ -100,7 +104,9 @@ git commit -m "feat: add GlaceSelectOption and GlaceSelectProps types"
   overflow: hidden;
   backdrop-filter: blur(var(--glace-blur-subtle));
   -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .glace-select__trigger:focus {
@@ -216,6 +222,7 @@ git commit -m "feat: add GlaceSelect CSS"
 ### Task 3: Write failing tests for GlaceSelect
 
 **Files:**
+
 - Create: `packages/vue/src/__tests__/GlaceSelect.test.ts`
 
 **Step 1: Create the test file**
@@ -414,11 +421,12 @@ git commit -m "test: add failing GlaceSelect tests"
 ### Task 4: Create `GlaceSelect.vue`
 
 **Files:**
+
 - Create: `packages/vue/src/components/GlaceSelect.vue`
 
 **Step 1: Create the component**
 
-```vue
+````vue
 <script setup lang="ts">
 /**
  * A liquid glass select with teleported dropdown, keyboard navigation,
@@ -460,9 +468,7 @@ const selectedOption = computed(
 
 // Only enabled options, preserving original array indices
 const enabledOptions = computed(() =>
-  props.options
-    .map((o, i) => ({ ...o, index: i }))
-    .filter((o) => !o.disabled),
+  props.options.map((o, i) => ({ ...o, index: i })).filter((o) => !o.disabled),
 )
 
 function updatePosition() {
@@ -629,7 +635,7 @@ defineExpose({ triggerRef })
     </ul>
   </Teleport>
 </template>
-```
+````
 
 **Step 2: Run tests**
 
@@ -651,6 +657,7 @@ git commit -m "feat: add GlaceSelect component"
 ### Task 5: Register, export, and verify build
 
 **Files:**
+
 - Modify: `packages/vue/src/plugin.ts`
 - Modify: `packages/vue/src/index.ts`
 
@@ -729,6 +736,7 @@ git commit -m "feat: register and export GlaceSelect"
 ### Task 6: Update playground
 
 **Files:**
+
 - Modify: `apps/playground/src/App.vue`
 
 **Step 1: Add a GlaceSelect demo section**

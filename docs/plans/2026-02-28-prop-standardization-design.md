@@ -5,6 +5,7 @@
 ## Problem
 
 Props across the 8 components were inconsistent:
+
 - `blurIntensity` existed only on GlaceCard despite all components using `backdrop-filter`
 - `variant` meant three different things: visual style (Badge), hierarchy (Button), and direction (ChatBubble)
 - `size` used different scales per component with no shared token set
@@ -49,27 +50,27 @@ Only Card, Navbar, and Modal expose `blurIntensity`. Content components (Button,
 
 ### Container components
 
-| Component | blurIntensity | size | variant | color | other |
-|---|---|---|---|---|---|
-| GlaceCard | `GlaceBlurIntensity` | — | — | — | elevation, radius, as |
-| GlaceNavbar | `GlaceBlurIntensity` | — | — | — | sticky, blurOnScroll, transparent |
-| GlaceModal | `GlaceBlurIntensity` | `sm\|md\|lg\|full` | — | — | modelValue, closeOnOverlay |
+| Component   | blurIntensity        | size               | variant | color | other                             |
+| ----------- | -------------------- | ------------------ | ------- | ----- | --------------------------------- |
+| GlaceCard   | `GlaceBlurIntensity` | —                  | —       | —     | elevation, radius, as             |
+| GlaceNavbar | `GlaceBlurIntensity` | —                  | —       | —     | sticky, blurOnScroll, transparent |
+| GlaceModal  | `GlaceBlurIntensity` | `sm\|md\|lg\|full` | —       | —     | modelValue, closeOnOverlay        |
 
 ### Content components
 
-| Component | size | variant | color | other |
-|---|---|---|---|---|
-| GlaceButton | `sm\|md\|lg` | `GlaceVariant` | `string` | loading, disabled, as, hoverEffect |
-| GlaceBadge | `xs\|sm\|md\|lg` | `GlaceVariant` | `string` | removable |
-| GlaceAvatar | `sm\|md\|lg\|xl` | — | — | src, alt, status |
-| GlaceInput | — | — | — | modelValue, type, placeholder, disabled, error |
-| GlaceChatBubble | — | — | — | direction, timestamp |
+| Component       | size             | variant        | color    | other                                          |
+| --------------- | ---------------- | -------------- | -------- | ---------------------------------------------- |
+| GlaceButton     | `sm\|md\|lg`     | `GlaceVariant` | `string` | loading, disabled, as, hoverEffect             |
+| GlaceBadge      | `xs\|sm\|md\|lg` | `GlaceVariant` | `string` | removable                                      |
+| GlaceAvatar     | `sm\|md\|lg\|xl` | —              | —        | src, alt, status                               |
+| GlaceInput      | —                | —              | —        | modelValue, type, placeholder, disabled, error |
+| GlaceChatBubble | —                | —              | —        | direction, timestamp                           |
 
 ## Breaking Changes
 
-| Component | Change |
-|---|---|
-| GlaceButton | `variant` values change: `primary\|secondary\|ghost` → `solid\|outline\|ghost\|subtle` |
-| GlaceChatBubble | `variant` prop renamed to `direction` |
+| Component       | Change                                                                                 |
+| --------------- | -------------------------------------------------------------------------------------- |
+| GlaceButton     | `variant` values change: `primary\|secondary\|ghost` → `solid\|outline\|ghost\|subtle` |
+| GlaceChatBubble | `variant` prop renamed to `direction`                                                  |
 
 All other changes are additive (new props: `blurIntensity` on Navbar/Modal, `color` on Button/Badge).

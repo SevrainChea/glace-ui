@@ -28,6 +28,7 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 **Dependency flow**: `@glace-ui/core` → `@glace-ui/vue` → `apps/playground`, `apps/docs`
 
 ### @glace-ui/core (framework-agnostic)
+
 - **Tokens** (`src/tokens/`): Design tokens as TypeScript objects (`GlaceTokens` type) with three presets: `glaceTokens` (default), `glaceTokensLight`, `glaceTokensDark`. Tokens map 1:1 to `--glace-*` CSS custom properties.
 - **Utils** (`src/utils/`): `getContrastColor()`, `generateGlaceGradient()`, `createGlaceTheme()`. Pure functions, no DOM dependency.
 - **CSS** (`src/css/`): 8 BEM component stylesheets using only `var(--glace-*)` references. Never hardcode values. Every component includes `backdrop-filter` + `-webkit-backdrop-filter` + `@supports` fallback.
@@ -35,12 +36,14 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 - **`injectGlaceTokens()`**: Sets CSS custom properties on an element (default `:root`). This is how tokens connect to CSS.
 
 ### @glace-ui/vue
+
 - **Components** (`src/components/`): 8 SFCs using `<script setup lang="ts">`. Props are defined in `types.ts` (separate from SFCs) for clean DTS generation.
 - **Composables**: `useGlaceTheme()` uses Vue provide/inject + watches tokens to auto-inject CSS vars. `useGlaceOverlay()` manages open/close + body scroll lock.
 - **Plugin** (`src/plugin.ts`): Registers all components globally, optionally injects theme tokens.
 - **Build**: tsdown with `unplugin-vue/rolldown` for SFC compilation, `dts: { vue: true }` for Vue-aware type generation. Vue and @glace-ui/core are externalized.
 
 ### Build tooling
+
 - **tsdown** (rolldown-powered): All packages use `tsdown.config.ts` producing ESM + CJS + DTS.
 - **pnpm workspaces**: `workspace:*` protocol links packages.
 

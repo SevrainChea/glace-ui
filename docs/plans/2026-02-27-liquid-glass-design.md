@@ -58,8 +58,8 @@ Each component CSS file applies the pattern. Per-component variations:
 ```ts
 function trackGlaceLight(
   element: HTMLElement,
-  options?: { container?: HTMLElement; intensity?: number }
-): () => void  // cleanup function
+  options?: { container?: HTMLElement; intensity?: number },
+): () => void // cleanup function
 ```
 
 - Listens to `mousemove` on document (or scoped container)
@@ -73,7 +73,7 @@ function trackGlaceLight(
 ```ts
 function useGlaceLight(
   elementRef: Ref<HTMLElement | null>,
-  options?: { container?: HTMLElement; intensity?: number }
+  options?: { container?: HTMLElement; intensity?: number },
 ): void
 ```
 

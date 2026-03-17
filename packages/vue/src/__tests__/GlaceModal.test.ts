@@ -70,7 +70,9 @@ describe('GlaceModal', () => {
       props: { modelValue: true, blurIntensity: 'subtle' },
       global: { stubs: { teleport: true } },
     })
-    expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-subtle')
+    expect(wrapper.find('.glace-modal__content').classes()).toContain(
+      'glace-modal__content--blur-subtle',
+    )
   })
 
   it('applies blur-medium modifier class to content', () => {
@@ -78,7 +80,9 @@ describe('GlaceModal', () => {
       props: { modelValue: true, blurIntensity: 'medium' },
       global: { stubs: { teleport: true } },
     })
-    expect(wrapper.find('.glace-modal__content').classes()).toContain('glace-modal__content--blur-medium')
+    expect(wrapper.find('.glace-modal__content').classes()).toContain(
+      'glace-modal__content--blur-medium',
+    )
   })
 
   it('does not apply blur modifier class for strong (default)', () => {
@@ -86,7 +90,11 @@ describe('GlaceModal', () => {
       props: { modelValue: true, blurIntensity: 'strong' },
       global: { stubs: { teleport: true } },
     })
-    expect(wrapper.find('.glace-modal__content').classes()).not.toContain('glace-modal__content--blur-subtle')
-    expect(wrapper.find('.glace-modal__content').classes()).not.toContain('glace-modal__content--blur-medium')
+    expect(wrapper.find('.glace-modal__content').classes()).not.toContain(
+      'glace-modal__content--blur-subtle',
+    )
+    expect(wrapper.find('.glace-modal__content').classes()).not.toContain(
+      'glace-modal__content--blur-medium',
+    )
   })
 })

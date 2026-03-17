@@ -21,10 +21,7 @@ const props = withDefaults(defineProps<GlaceChatBubbleProps>(), {
 
 const contentRef = ref<HTMLElement | null>(null)
 
-const classes = computed(() => [
-  'glace-chat-bubble',
-  `glace-chat-bubble--${props.direction}`,
-])
+const classes = computed(() => ['glace-chat-bubble', `glace-chat-bubble--${props.direction}`])
 
 useGlaceLight(contentRef)
 

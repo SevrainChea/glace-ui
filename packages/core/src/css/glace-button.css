@@ -15,7 +15,10 @@
   overflow: hidden;
   backdrop-filter: blur(var(--glace-blur));
   -webkit-backdrop-filter: blur(var(--glace-blur));
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
   user-select: none;
 }
 

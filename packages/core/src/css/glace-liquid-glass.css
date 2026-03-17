@@ -8,8 +8,7 @@
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    circle var(--glace-specular-size)
-      at var(--glace-light-x) var(--glace-light-y),
+    circle var(--glace-specular-size) at var(--glace-light-x) var(--glace-light-y),
     rgba(255, 255, 255, var(--glace-specular-intensity)),
     transparent
   );

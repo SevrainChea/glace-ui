@@ -9,7 +9,10 @@ describe('GlaceChatBubble', () => {
   })
 
   it('applies sent direction class', () => {
-    const wrapper = mount(GlaceChatBubble, { props: { direction: 'sent' }, slots: { default: 'Hello' } })
+    const wrapper = mount(GlaceChatBubble, {
+      props: { direction: 'sent' },
+      slots: { default: 'Hello' },
+    })
     expect(wrapper.classes()).toContain('glace-chat-bubble--sent')
   })
 
@@ -19,7 +22,10 @@ describe('GlaceChatBubble', () => {
   })
 
   it('renders timestamp when provided', () => {
-    const wrapper = mount(GlaceChatBubble, { props: { timestamp: '12:30 PM' }, slots: { default: 'Hi' } })
+    const wrapper = mount(GlaceChatBubble, {
+      props: { timestamp: '12:30 PM' },
+      slots: { default: 'Hi' },
+    })
     expect(wrapper.find('.glace-chat-bubble__timestamp').text()).toBe('12:30 PM')
   })
 

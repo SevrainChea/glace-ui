@@ -35,7 +35,7 @@ const classes = computed(() => [
 ])
 
 const style = computed(() =>
-  props.color ? { '--glace-bg': props.color } as Record<string, string> : undefined,
+  props.color ? ({ '--glace-bg': props.color } as Record<string, string>) : undefined,
 )
 
 useGlaceLight(rootRef)

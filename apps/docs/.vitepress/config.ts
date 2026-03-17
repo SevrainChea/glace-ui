@@ -32,9 +32,7 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/sevrainchea/glace-ui' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/sevrainchea/glace-ui' }],
   },
   vite: {
     plugins: [llmstxt()],

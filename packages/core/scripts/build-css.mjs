@@ -21,9 +21,7 @@ const files = [
 
 mkdirSync(distDir, { recursive: true })
 
-const output = files
-  .map((file) => readFileSync(resolve(cssDir, file), 'utf-8'))
-  .join('\n')
+const output = files.map((file) => readFileSync(resolve(cssDir, file), 'utf-8')).join('\n')
 
 writeFileSync(resolve(distDir, 'index.css'), output)
 console.log(`Built dist/index.css (${files.length} components)`)

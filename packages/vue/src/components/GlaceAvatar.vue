@@ -35,11 +35,7 @@ watch(
   },
 )
 
-const classes = computed(() => [
-  'glace-avatar',
-  'glace-glass',
-  `glace-avatar--${props.size}`,
-])
+const classes = computed(() => ['glace-avatar', 'glace-glass', `glace-avatar--${props.size}`])
 
 useGlaceLight(rootRef)
 

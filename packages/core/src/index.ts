@@ -21,11 +21,6 @@ export type {
   GlaceLightTokens,
 } from './tokens'
 
-export {
-  getContrastColor,
-  generateGlaceGradient,
-  createGlaceTheme,
-  trackGlaceLight,
-} from './utils'
+export { getContrastColor, generateGlaceGradient, createGlaceTheme, trackGlaceLight } from './utils'
 
 export type { GlaceGradientOptions, TrackGlaceLightOptions } from './utils'

@@ -52,10 +52,7 @@ export const glaceTokensDark: GlaceTokens = {
  * @param tokens - Token overrides to merge with defaults
  * @param element - Target element (defaults to `:root`)
  */
-export function injectGlaceTokens(
-  tokens: Partial<GlaceTokens> = {},
-  element?: HTMLElement,
-): void {
+export function injectGlaceTokens(tokens: Partial<GlaceTokens> = {}, element?: HTMLElement): void {
   const target = element ?? document.documentElement
   const merged = { ...glaceTokens, ...tokens }
 

@@ -17,12 +17,12 @@ Use `pnpm -r run <task>`. pnpm's recursive runner topologically sorts packages b
 
 Replace scripts:
 
-| Before | After |
-|--------|-------|
-| `turbo dev` | `pnpm -r --parallel run dev` |
-| `turbo build` | `pnpm -r run build` |
-| `turbo test` | `pnpm -r run build && pnpm -r run test` |
-| `turbo typecheck` | `pnpm -r run typecheck` |
+| Before                                | After                                    |
+| ------------------------------------- | ---------------------------------------- |
+| `turbo dev`                           | `pnpm -r --parallel run dev`             |
+| `turbo build`                         | `pnpm -r run build`                      |
+| `turbo test`                          | `pnpm -r run build && pnpm -r run test`  |
+| `turbo typecheck`                     | `pnpm -r run typecheck`                  |
 | `turbo build && pnpm run link:global` | `pnpm run build && pnpm run link:global` |
 
 Remove `"turbo": "^2.3.0"` from `devDependencies`.

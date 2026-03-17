@@ -13,6 +13,7 @@
 ### Task 1: Add liquid glass token module
 
 **Files:**
+
 - Create: `packages/core/src/tokens/light.ts`
 - Modify: `packages/core/src/tokens/index.ts`
 
@@ -21,9 +22,7 @@
 Add to `packages/core/src/__tests__/tokens.test.ts`:
 
 ```ts
-import {
-  glaceLightTokens,
-} from '../tokens'
+import { glaceLightTokens } from '../tokens'
 import type { GlaceLightTokens } from '../tokens'
 
 describe('glaceLightTokens', () => {
@@ -142,15 +141,9 @@ export const glaceTokensDark: GlaceTokens = {
 Also update `packages/core/src/index.ts` to add exports:
 
 ```ts
-export {
-  glaceLightTokens,
-  glaceLightTokensLight,
-  glaceLightTokensDark,
-} from './tokens'
+export { glaceLightTokens, glaceLightTokensLight, glaceLightTokensDark } from './tokens'
 
-export type {
-  GlaceLightTokens,
-} from './tokens'
+export type { GlaceLightTokens } from './tokens'
 ```
 
 **Step 5: Run test to verify it passes**
@@ -170,6 +163,7 @@ git commit -m "feat(core): add liquid glass light tokens"
 ### Task 2: Create shared liquid glass CSS
 
 **Files:**
+
 - Create: `packages/core/src/css/glace-liquid-glass.css`
 - Modify: `packages/core/src/css/index.css`
 - Modify: `packages/core/scripts/build-css.mjs`
@@ -189,8 +183,8 @@ Create `packages/core/src/css/glace-liquid-glass.css`:
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    ellipse var(--glace-specular-size) var(--glace-specular-size)
-      at var(--glace-light-x) var(--glace-light-y),
+    ellipse var(--glace-specular-size) var(--glace-specular-size) at var(--glace-light-x)
+      var(--glace-light-y),
     rgba(255, 255, 255, var(--glace-specular-intensity)),
     transparent
   );
@@ -249,6 +243,7 @@ git commit -m "feat(core): add shared liquid glass CSS layers"
 ### Task 3: Update GlaceCard CSS + Vue component for liquid glass
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-card.css`
 - Modify: `packages/vue/src/components/GlaceCard.vue`
 
@@ -268,7 +263,9 @@ Replace the full contents of `packages/core/src/css/glace-card.css`:
   backdrop-filter: blur(var(--glace-blur));
   -webkit-backdrop-filter: blur(var(--glace-blur));
   overflow: hidden;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .glace-card--hoverable:hover {
@@ -278,8 +275,8 @@ Replace the full contents of `packages/core/src/css/glace-card.css`:
 
 .glace-card--hoverable:hover::before {
   background: radial-gradient(
-    ellipse var(--glace-specular-size) var(--glace-specular-size)
-      at var(--glace-light-x) var(--glace-light-y),
+    ellipse var(--glace-specular-size) var(--glace-specular-size) at var(--glace-light-x)
+      var(--glace-light-y),
     rgba(255, 255, 255, calc(var(--glace-specular-intensity) + 0.1)),
     transparent
   );
@@ -411,6 +408,7 @@ git commit -m "feat(card): add liquid glass layers to GlaceCard"
 ### Task 4: Update GlaceButton CSS + Vue component
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-button.css`
 - Modify: `packages/vue/src/components/GlaceButton.vue`
 
@@ -435,7 +433,10 @@ Replace full contents of `packages/core/src/css/glace-button.css`:
   padding: 0.5rem 1rem;
   backdrop-filter: blur(var(--glace-blur));
   -webkit-backdrop-filter: blur(var(--glace-blur));
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
   user-select: none;
   overflow: hidden;
 }
@@ -585,6 +586,7 @@ git commit -m "feat(button): add liquid glass layers to GlaceButton"
 ### Task 5: Update remaining 6 component CSS files
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-input.css`
 - Modify: `packages/core/src/css/glace-modal.css`
 - Modify: `packages/core/src/css/glace-badge.css`
@@ -627,6 +629,7 @@ git commit -m "feat(css): add liquid glass layers to all remaining components"
 ### Task 6: Update remaining 6 Vue components
 
 **Files:**
+
 - Modify: `packages/vue/src/components/GlaceInput.vue`
 - Modify: `packages/vue/src/components/GlaceModal.vue`
 - Modify: `packages/vue/src/components/GlaceBadge.vue`
@@ -664,6 +667,7 @@ git commit -m "feat(vue): add glace-glass class to all Vue components"
 ### Task 7: Create `trackGlaceLight` core utility
 
 **Files:**
+
 - Create: `packages/core/src/utils/trackGlaceLight.ts`
 - Modify: `packages/core/src/utils/index.ts` (re-export)
 - Modify: `packages/core/src/index.ts` (re-export)
@@ -871,6 +875,7 @@ git commit -m "feat(core): add trackGlaceLight mouse-reactive light utility"
 ### Task 8: Create `useGlaceLight` Vue composable
 
 **Files:**
+
 - Create: `packages/vue/src/composables/useGlaceLight.ts`
 - Modify: `packages/vue/src/composables/index.ts`
 - Modify: `packages/vue/src/index.ts`
@@ -948,6 +953,7 @@ git commit -m "feat(vue): add useGlaceLight composable"
 ### Task 9: Wire `useGlaceLight` into all 8 Vue components
 
 **Files:**
+
 - Modify: `packages/vue/src/components/GlaceCard.vue`
 - Modify: `packages/vue/src/components/GlaceButton.vue`
 - Modify: `packages/vue/src/components/GlaceInput.vue`
@@ -996,6 +1002,7 @@ git commit -m "feat(vue): wire useGlaceLight into all components"
 ### Task 10: Update color tokens for enhanced transparency
 
 **Files:**
+
 - Modify: `packages/core/src/tokens/colors.ts`
 
 **Step 1: Update default color tokens**
@@ -1004,27 +1011,27 @@ Make backgrounds slightly more transparent to let the liquid glass effect show t
 
 ```ts
 export const glaceColorTokens: GlaceColorTokens = {
-  '--glace-bg': 'rgba(255, 255, 255, 0.08)',        // was 0.12
-  '--glace-bg-hover': 'rgba(255, 255, 255, 0.14)',   // was 0.18
-  '--glace-border': 'rgba(255, 255, 255, 0.15)',      // was 0.2
+  '--glace-bg': 'rgba(255, 255, 255, 0.08)', // was 0.12
+  '--glace-bg-hover': 'rgba(255, 255, 255, 0.14)', // was 0.18
+  '--glace-border': 'rgba(255, 255, 255, 0.15)', // was 0.2
   '--glace-text-primary': 'rgba(255, 255, 255, 0.95)',
   '--glace-text-secondary': 'rgba(255, 255, 255, 0.7)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.12)',
 }
 
 export const glaceColorTokensLight: GlaceColorTokens = {
-  '--glace-bg': 'rgba(255, 255, 255, 0.55)',          // was 0.65
-  '--glace-bg-hover': 'rgba(255, 255, 255, 0.7)',     // was 0.8
-  '--glace-border': 'rgba(255, 255, 255, 0.4)',        // was 0.5
+  '--glace-bg': 'rgba(255, 255, 255, 0.55)', // was 0.65
+  '--glace-bg-hover': 'rgba(255, 255, 255, 0.7)', // was 0.8
+  '--glace-border': 'rgba(255, 255, 255, 0.4)', // was 0.5
   '--glace-text-primary': 'rgba(0, 0, 0, 0.87)',
   '--glace-text-secondary': 'rgba(0, 0, 0, 0.6)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.08)',
 }
 
 export const glaceColorTokensDark: GlaceColorTokens = {
-  '--glace-bg': 'rgba(0, 0, 0, 0.25)',                // was 0.3
-  '--glace-bg-hover': 'rgba(0, 0, 0, 0.35)',          // was 0.4
-  '--glace-border': 'rgba(255, 255, 255, 0.12)',       // was 0.15
+  '--glace-bg': 'rgba(0, 0, 0, 0.25)', // was 0.3
+  '--glace-bg-hover': 'rgba(0, 0, 0, 0.35)', // was 0.4
+  '--glace-border': 'rgba(255, 255, 255, 0.12)', // was 0.15
   '--glace-text-primary': 'rgba(255, 255, 255, 0.95)',
   '--glace-text-secondary': 'rgba(255, 255, 255, 0.7)',
   '--glace-shadow': '0 8px 32px rgba(0, 0, 0, 0.24)',

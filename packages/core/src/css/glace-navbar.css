@@ -11,7 +11,10 @@
   color: var(--glace-text-primary);
   backdrop-filter: blur(var(--glace-blur));
   -webkit-backdrop-filter: blur(var(--glace-blur));
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom-color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-bottom-color 0.3s ease;
   z-index: 100;
   --glace-specular-size: 200px;
 }

@@ -31,7 +31,7 @@ const slots = useSlots()
 const fieldRef = ref<HTMLElement | null>(null)
 
 const inputId = `glace-input-${Math.random().toString(36).slice(2, 9)}`
-const errorId = computed(() => props.error ? `${inputId}-error` : undefined)
+const errorId = computed(() => (props.error ? `${inputId}-error` : undefined))
 
 const wrapperClasses = computed(() => [
   'glace-input',

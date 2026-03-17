@@ -51,9 +51,7 @@ if (!versionBump || !validBumps.includes(versionBump)) {
   process.exit(1)
 }
 
-console.log(
-  `\n🚀 Starting release process (${dryRun ? 'DRY RUN' : 'LIVE'})...`,
-)
+console.log(`\n🚀 Starting release process (${dryRun ? 'DRY RUN' : 'LIVE'})...`)
 console.log(`Version bump: ${versionBump}`)
 
 // Run pre-publish checks
@@ -100,9 +98,7 @@ try {
 console.log(`\n📤 Pushing to GitHub...`)
 try {
   execSync('git push && git push --tags', { stdio: 'inherit', cwd: root })
-  console.log(
-    '\n✅ Tag pushed! GitHub Actions will now publish to npm and create a release.',
-  )
+  console.log('\n✅ Tag pushed! GitHub Actions will now publish to npm and create a release.')
 } catch (error) {
   console.error('\n❌ Git push failed.')
   console.error(
