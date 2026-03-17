@@ -92,18 +92,9 @@ const selectValue = ref<string | number | null>(null)
       <section class="section">
         <h2 class="section-title">GlaceInput</h2>
         <div class="input-grid">
-          <GlaceInput
-            v-model="inputValue"
-            placeholder="Type something..."
-          />
-          <GlaceInput
-            v-model="errorInputValue"
-            error="This field is invalid"
-          />
-          <GlaceInput
-            placeholder="Disabled input"
-            disabled
-          />
+          <GlaceInput v-model="inputValue" placeholder="Type something..." />
+          <GlaceInput v-model="errorInputValue" error="This field is invalid" />
+          <GlaceInput placeholder="Disabled input" disabled />
         </div>
       </section>
 
@@ -177,13 +168,13 @@ const selectValue = ref<string | number | null>(null)
       <!-- Modal Section -->
       <section class="section">
         <h2 class="section-title">GlaceModal</h2>
-        <GlaceButton variant="solid" @click="showModal = true">
-          Open Modal
-        </GlaceButton>
+        <GlaceButton variant="solid" @click="showModal = true"> Open Modal </GlaceButton>
 
         <GlaceModal v-model="showModal" size="md" close-on-overlay>
           <template #header>GlaceUI Modal</template>
-          <p>This is a liquid glass modal with backdrop blur, focus trapping, and Escape key support.</p>
+          <p>
+            This is a liquid glass modal with backdrop blur, focus trapping, and Escape key support.
+          </p>
           <p>Click the overlay or press Escape to close.</p>
           <template #footer>
             <div class="modal-footer-actions">
@@ -200,7 +191,9 @@ const selectValue = ref<string | number | null>(null)
 <style scoped>
 .playground {
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(15, 12, 41, 0.3), rgba(48, 43, 99, 0.3), rgba(36, 36, 62, 0.3)), url('/foret.webp') center / cover no-repeat fixed;
+  background:
+    linear-gradient(135deg, rgba(15, 12, 41, 0.3), rgba(48, 43, 99, 0.3), rgba(36, 36, 62, 0.3)),
+    url('/foret.webp') center / cover no-repeat fixed;
   color: #e2e8f0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -269,8 +262,9 @@ const selectValue = ref<string | number | null>(null)
 
 .input-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  align-items: start;
 }
 
 .chat-container {

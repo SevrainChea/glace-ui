@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
   width: 100%;
   padding: 0.625rem 0.875rem;
   background: var(--glace-bg);
@@ -72,6 +73,7 @@
   margin: 0;
   padding: 0.25rem 0;
   list-style: none;
+  font-family: inherit;
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
   border-radius: var(--glace-radius-sm);

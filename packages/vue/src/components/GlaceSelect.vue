@@ -44,9 +44,7 @@ const selectedOption = computed(
 
 // Only enabled options, preserving original array indices
 const enabledOptions = computed(() =>
-  props.options
-    .map((o, i) => ({ ...o, index: i }))
-    .filter((o) => !o.disabled),
+  props.options.map((o, i) => ({ ...o, index: i })).filter((o) => !o.disabled),
 )
 
 function updatePosition() {
@@ -131,14 +129,14 @@ function handleKeydown(e: KeyboardEvent) {
 
 // TODO: implement dynamic repositioning on scroll/resize instead of closing
 function handleScrollOrResize() {
-  if (isOpen.value) close()
+  if (isOpen.value) close(false)
 }
 
 function handleClickOutside(e: MouseEvent) {
   const target = e.target as Node
   const inTrigger = rootRef.value?.contains(target)
   const inDropdown = dropdownRef.value?.contains(target)
-  if (!inTrigger && !inDropdown) close()
+  if (!inTrigger && !inDropdown) close(false)
 }
 
 function scrollActiveIntoView() {
