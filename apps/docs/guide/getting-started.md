@@ -16,7 +16,7 @@ pnpm add @glace-ui/core
 // main.ts
 import { createApp } from 'vue'
 import { GlacePlugin } from '@glace-ui/vue'
-import '@glace-ui/core/css'
+import '@glace-ui/vue/css'
 import App from './App.vue'
 
 createApp(App).use(GlacePlugin).mount('#app')

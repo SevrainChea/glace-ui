@@ -8,7 +8,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./css": "./dist/index.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,7 +18,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown",
+    "build": "tsdown && node -e \"require('fs').copyFileSync('../core/dist/index.css', 'dist/index.css')\"",
     "test": "vitest run",
     "typecheck": "vue-tsc --noEmit"
   },
