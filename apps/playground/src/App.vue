@@ -8,7 +8,11 @@ const showModal = ref(false)
 const inputValue = ref('')
 const errorInputValue = ref('bad input')
 const selectValue = ref<string | number | null>(null)
-const switchEnabled = ref(false)
+const switchSm = ref(false)
+const switchMd = ref(false)
+const switchLg = ref(false)
+const switchNotif = ref(false)
+const switchIcon = ref(false)
 const isDark = ref(false)
 
 const selectedBg = ref('forest')
@@ -167,14 +171,14 @@ const backgroundStyle = computed(() => ({
       <section class="section">
         <h2 class="section-title">GlaceSwitch</h2>
         <div class="switch-grid">
-          <GlaceSwitch v-model="switchEnabled" label="Enable notifications" />
-          <GlaceSwitch v-model="switchEnabled" size="sm" label="Small" />
-          <GlaceSwitch v-model="switchEnabled" size="md" label="Medium" />
-          <GlaceSwitch v-model="switchEnabled" size="lg" label="Large" />
-          <GlaceSwitch v-model="switchEnabled" disabled label="Disabled switch" />
+          <GlaceSwitch v-model="switchNotif" label="Enable notifications" />
+          <GlaceSwitch v-model="switchSm" size="sm" label="Small" />
+          <GlaceSwitch v-model="switchMd" size="md" label="Medium" />
+          <GlaceSwitch v-model="switchLg" size="lg" label="Large" />
+          <GlaceSwitch v-model="switchNotif" disabled label="Disabled switch" />
 
           <div class="switch-with-icon">
-            <GlaceSwitch v-model="switchEnabled">
+            <GlaceSwitch v-model="switchIcon">
               <template #checked-icon>✓</template>
               With check icon
             </GlaceSwitch>
