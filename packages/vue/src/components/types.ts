@@ -130,3 +130,15 @@ export interface GlaceSelectProps {
   /** Error message (shows error state when set) */
   error?: string
 }
+
+/** Props for GlaceSwitch */
+export interface GlaceSwitchProps {
+  /** Bound value (v-model) */
+  modelValue?: boolean
+  /** Switch size */
+  size?: Extract<GlaceSize, 'sm' | 'md' | 'lg'>
+  /** Text label displayed beside the switch */
+  label?: string
+  /** Disable the switch */
+  disabled?: boolean
+}
