@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 import type { GlaceTokens } from '@glace-ui/core'
-import { injectGlaceTokens } from '@glace-ui/core'
+import { injectGlaceTokens, injectGlaceFilters } from '@glace-ui/core'
 
 import GlaceCard from './components/GlaceCard.vue'
 import GlaceBadge from './components/GlaceBadge.vue'
@@ -46,6 +46,7 @@ export const GlacePlugin = {
     app.component('GlaceSwitch', GlaceSwitch)
 
     if (typeof document !== 'undefined') {
+      injectGlaceFilters()
       const theme = options?.theme ?? {}
       if (options?.hoverEffect === false) {
         injectGlaceTokens({ '--glace-hover-enabled': '0', ...theme })
