@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useGlaceTheme } from '@glace-ui/vue'
 
 useGlaceTheme()
@@ -8,16 +8,45 @@ const showModal = ref(false)
 const inputValue = ref('')
 const errorInputValue = ref('bad input')
 const selectValue = ref<string | number | null>(null)
+
+const selectedBg = ref('forest')
+
+const bgOptions = [
+  { label: 'Forest (default)', value: 'forest' },
+  { label: 'Light theme', value: 'light' },
+  { label: 'Dark theme', value: 'dark' },
+  { label: 'Light gradient', value: 'light-gradient' },
+  { label: 'Dark gradient', value: 'dark-gradient' },
+]
+
+const backgrounds: Record<string, string> = {
+  forest:
+    "linear-gradient(135deg, rgba(15, 12, 41, 0.3), rgba(48, 43, 99, 0.3), rgba(36, 36, 62, 0.3)), url('/foret.webp') center / cover no-repeat fixed",
+  light: 'linear-gradient(135deg, #e0e7ff, #f0f4ff, #faf5ff)',
+  dark: 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)',
+  'light-gradient': 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #d4a8ff 100%)',
+  'dark-gradient': 'linear-gradient(135deg, #0c0c1d 0%, #111132 50%, #0d1b4b 100%)',
+}
+
+const backgroundStyle = computed(() => ({
+  background: backgrounds[selectedBg.value],
+}))
 </script>
 
 <template>
-  <div class="playground">
+  <div class="playground" :style="backgroundStyle">
     <!-- Navbar -->
     <GlaceNavbar sticky blur-on-scroll>
       <template #logo>
         <span class="logo">GlaceUI</span>
       </template>
       <template #actions>
+        <GlaceSelect
+          v-model="selectedBg"
+          :options="bgOptions"
+          placeholder="Background"
+          style="min-width: 160px"
+        />
         <GlaceButton variant="ghost" size="sm">Docs</GlaceButton>
         <GlaceButton variant="ghost" size="sm">GitHub</GlaceButton>
         <GlaceButton variant="solid" size="sm">Get Started</GlaceButton>
@@ -191,9 +220,6 @@ const selectValue = ref<string | number | null>(null)
 <style scoped>
 .playground {
   min-height: 100vh;
-  background:
-    linear-gradient(135deg, rgba(15, 12, 41, 0.3), rgba(48, 43, 99, 0.3), rgba(36, 36, 62, 0.3)),
-    url('/foret.webp') center / cover no-repeat fixed;
   color: #e2e8f0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
