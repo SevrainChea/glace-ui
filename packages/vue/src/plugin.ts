@@ -11,6 +11,7 @@ import GlaceModal from './components/GlaceModal.vue'
 import GlaceChatBubble from './components/GlaceChatBubble.vue'
 import GlaceAvatar from './components/GlaceAvatar.vue'
 import GlaceSelect from './components/GlaceSelect.vue'
+import GlaceSwitch from './components/GlaceSwitch.vue'
 
 /** Options for the GlaceUI Vue plugin */
 export interface GlacePluginOptions {
@@ -42,6 +43,7 @@ export const GlacePlugin = {
     app.component('GlaceChatBubble', GlaceChatBubble)
     app.component('GlaceAvatar', GlaceAvatar)
     app.component('GlaceSelect', GlaceSelect)
+    app.component('GlaceSwitch', GlaceSwitch)
 
     if (typeof document !== 'undefined') {
       const theme = options?.theme ?? {}
