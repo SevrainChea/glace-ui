@@ -31,13 +31,14 @@ pnpm --filter @glace-ui/core exec vitest run src/__tests__/tokens.test.ts
 
 - **Tokens** (`src/tokens/`): Design tokens as TypeScript objects (`GlaceTokens` type) with three presets: `glaceTokens` (default), `glaceTokensLight`, `glaceTokensDark`. Tokens map 1:1 to `--glace-*` CSS custom properties.
 - **Utils** (`src/utils/`): `getContrastColor()`, `generateGlaceGradient()`, `createGlaceTheme()`. Pure functions, no DOM dependency.
-- **CSS** (`src/css/`): 8 BEM component stylesheets using only `var(--glace-*)` references. Never hardcode values. Every component includes `backdrop-filter` + `-webkit-backdrop-filter` + `@supports` fallback.
+- **CSS** (`src/css/`): 9 BEM component stylesheets using only `var(--glace-*)` references. Never hardcode values. Every component includes `backdrop-filter` + `-webkit-backdrop-filter` + `@supports` fallback.
 - **CSS Build**: `scripts/build-css.mjs` concatenates individual CSS files into `dist/index.css` (runs after tsdown). **When adding a new component CSS file, you MUST add it to the `files` array in `packages/core/scripts/build-css.mjs` or it will be excluded from the published bundle.**
 - **`injectGlaceTokens()`**: Sets CSS custom properties on an element (default `:root`). This is how tokens connect to CSS.
 
 ### @glace-ui/vue
 
-- **Components** (`src/components/`): 8 SFCs using `<script setup lang="ts">`. Props are defined in `types.ts` (separate from SFCs) for clean DTS generation.
+- **Components** (`src/components/`): 9 SFCs using `<script setup lang="ts">`. Props are defined in `types.ts` (separate from SFCs) for clean DTS generation.
+  - **GlaceSwitch**: Toggle switch with track mode (single sliding thumb) and dual-icon pill mode (auto-detected when both `#checked-icon` and `#unchecked-icon` slots are provided). Props: `modelValue` (v-model), `size` (`sm`/`md`/`lg`), `label`, `disabled`. Pill mode uses `justify-content: space-between` for even icon spacing. Specular hover effect suppressed in pill mode via `--glace-hover-enabled: 0`.
 - **Composables**: `useGlaceTheme()` uses Vue provide/inject + watches tokens to auto-inject CSS vars. `useGlaceOverlay()` manages open/close + body scroll lock.
 - **Plugin** (`src/plugin.ts`): Registers all components globally, optionally injects theme tokens.
 - **Build**: tsdown with `unplugin-vue/rolldown` for SFC compilation, `dts: { vue: true }` for Vue-aware type generation. Vue and @glace-ui/core are externalized.
