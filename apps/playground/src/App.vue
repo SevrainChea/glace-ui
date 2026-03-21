@@ -8,6 +8,8 @@ const showModal = ref(false)
 const inputValue = ref('')
 const errorInputValue = ref('bad input')
 const selectValue = ref<string | number | null>(null)
+const switchEnabled = ref(false)
+const isDark = ref(false)
 
 const selectedBg = ref('forest')
 
@@ -161,6 +163,32 @@ const backgroundStyle = computed(() => ({
         </div>
       </section>
 
+      <!-- Switch Section -->
+      <section class="section">
+        <h2 class="section-title">GlaceSwitch</h2>
+        <div class="switch-grid">
+          <GlaceSwitch v-model="switchEnabled" label="Enable notifications" />
+          <GlaceSwitch v-model="switchEnabled" size="sm" label="Small" />
+          <GlaceSwitch v-model="switchEnabled" size="md" label="Medium" />
+          <GlaceSwitch v-model="switchEnabled" size="lg" label="Large" />
+          <GlaceSwitch v-model="switchEnabled" disabled label="Disabled switch" />
+
+          <div class="switch-with-icon">
+            <GlaceSwitch v-model="switchEnabled">
+              <template #checked-icon>✓</template>
+              With check icon
+            </GlaceSwitch>
+          </div>
+
+          <div class="switch-with-icon">
+            <GlaceSwitch v-model="isDark">
+              <template #unchecked-icon>🌙</template>
+              <template #checked-icon>☀️</template>
+            </GlaceSwitch>
+          </div>
+        </div>
+      </section>
+
       <!-- Chat Bubbles Section -->
       <section class="section">
         <h2 class="section-title">GlaceChatBubble</h2>
@@ -304,5 +332,18 @@ const backgroundStyle = computed(() => ({
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+}
+
+.switch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.switch-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 </style>
