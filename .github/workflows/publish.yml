@@ -27,6 +27,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Build core (required for typecheck)
+        run: pnpm --filter @glace-ui/core build
+
       - name: Type check
         run: pnpm typecheck
 
