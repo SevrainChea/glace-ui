@@ -6,6 +6,8 @@ export { glaceBorderTokens } from './borders'
 export type { GlaceBorderTokens } from './borders'
 export { glaceLightTokens, glaceLightTokensLight, glaceLightTokensDark } from './light'
 export type { GlaceLightTokens } from './light'
+export { glaceTypographyTokens } from './typography'
+export type { GlaceTypographyTokens } from './typography'
 
 import { glaceColorTokens, glaceColorTokensLight, glaceColorTokensDark } from './colors'
 import type { GlaceColorTokens } from './colors'
@@ -15,9 +17,15 @@ import { glaceBorderTokens } from './borders'
 import type { GlaceBorderTokens } from './borders'
 import { glaceLightTokens, glaceLightTokensLight, glaceLightTokensDark } from './light'
 import type { GlaceLightTokens } from './light'
+import { glaceTypographyTokens } from './typography'
+import type { GlaceTypographyTokens } from './typography'
 
 /** Complete set of glace design tokens */
-export type GlaceTokens = GlaceColorTokens & GlaceBlurTokens & GlaceBorderTokens & GlaceLightTokens
+export type GlaceTokens = GlaceColorTokens &
+  GlaceBlurTokens &
+  GlaceBorderTokens &
+  GlaceLightTokens &
+  GlaceTypographyTokens
 
 /** Default glace tokens (dark-friendly) */
 export const glaceTokens: GlaceTokens = {
@@ -25,6 +33,7 @@ export const glaceTokens: GlaceTokens = {
   ...glaceBlurTokens,
   ...glaceBorderTokens,
   ...glaceLightTokens,
+  ...glaceTypographyTokens,
 }
 
 /** Light theme preset */
@@ -34,6 +43,7 @@ export const glaceTokensLight: GlaceTokens = {
   ...glaceBorderTokens,
   ...glaceLightTokens,
   ...glaceLightTokensLight,
+  ...glaceTypographyTokens,
 }
 
 /** Dark theme preset */
@@ -43,6 +53,7 @@ export const glaceTokensDark: GlaceTokens = {
   ...glaceBorderTokens,
   ...glaceLightTokens,
   ...glaceLightTokensDark,
+  ...glaceTypographyTokens,
 }
 
 /**

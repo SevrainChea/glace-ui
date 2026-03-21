@@ -75,7 +75,7 @@
   margin: 0;
   padding: 0.25rem 0;
   list-style: none;
-  font-family: inherit;
+  font-family: var(--glace-font-family);
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
   border-radius: var(--glace-radius-sm);

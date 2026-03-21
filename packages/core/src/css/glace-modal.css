@@ -15,6 +15,7 @@
 .glace-modal__content {
   position: relative;
   width: 100%;
+  font-family: var(--glace-font-family);
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
   border-radius: var(--glace-radius);
