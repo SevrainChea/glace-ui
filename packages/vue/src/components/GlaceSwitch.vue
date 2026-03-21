@@ -30,6 +30,7 @@ const emit = defineEmits<{
 }>()
 
 const slots = useSlots()
+const rootRef = ref<HTMLElement | null>(null)
 const trackRef = ref<HTMLElement | null>(null)
 
 /** Pill mode activates when both icon slots are provided */
@@ -44,19 +45,18 @@ const classes = computed(() => [
 ])
 
 function toggle() {
-  if (!props.disabled) {
-    emit('update:modelValue', !props.modelValue)
-  }
+  emit('update:modelValue', !props.modelValue)
 }
 
-// Specular hover effect — track mode only (pill has no hover effect)
+// Specular hover effect on the track. In pill mode the effect is visually suppressed
+// via CSS: --glace-hover-enabled: 0 on .glace-switch--pill .glace-switch__track
 useGlaceLight(trackRef)
 
-defineExpose({ trackRef })
+defineExpose({ rootRef })
 </script>
 
 <template>
-  <label :class="classes">
+  <label ref="rootRef" :class="classes">
     <input
       class="glace-switch__input"
       type="checkbox"
