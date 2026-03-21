@@ -17,6 +17,7 @@ const files = [
   'glace-chat-bubble.css',
   'glace-avatar.css',
   'glace-select.css',
+  'glace-switch.css',
 ]
 
 mkdirSync(distDir, { recursive: true })

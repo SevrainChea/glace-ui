@@ -1,0 +1,192 @@
+/* GlaceSwitch */
+.glace-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.glace-switch--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Hidden native checkbox — accessible but invisible */
+.glace-switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Track (default — no icons or single icon) ─────────────────────────── */
+
+.glace-switch__track {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(--glace-radius-full);
+  background: var(--glace-bg);
+  border: var(--glace-border-width) solid var(--glace-border);
+  backdrop-filter: blur(var(--glace-blur-subtle));
+  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.glace-switch__input:focus-visible ~ .glace-switch__track {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.glace-switch--checked .glace-switch__track {
+  background: var(--glace-switch-active-bg);
+  border-color: var(--glace-switch-active-border);
+  box-shadow: 0 0 10px var(--glace-switch-glow);
+}
+
+/* ─── Thumb ──────────────────────────────────────────────────────────────── */
+
+.glace-switch__thumb {
+  position: absolute;
+  top: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    left 0.2s ease,
+    right 0.2s ease,
+    background 0.2s ease;
+}
+
+.glace-switch--checked .glace-switch__thumb {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* ─── Sizes (track mode) ─────────────────────────────────────────────────── */
+
+.glace-switch--sm .glace-switch__track {
+  width: 32px;
+  height: 18px;
+}
+
+.glace-switch--sm .glace-switch__thumb {
+  width: 13px;
+  height: 13px;
+  left: 3px;
+  font-size: 8px;
+}
+
+.glace-switch--sm.glace-switch--checked .glace-switch__thumb {
+  left: calc(32px - 13px - 3px);
+}
+
+.glace-switch--md .glace-switch__track {
+  width: 44px;
+  height: 24px;
+}
+
+.glace-switch--md .glace-switch__thumb {
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  font-size: 10px;
+}
+
+.glace-switch--md.glace-switch--checked .glace-switch__thumb {
+  left: calc(44px - 18px - 3px);
+}
+
+.glace-switch--lg .glace-switch__track {
+  width: 56px;
+  height: 30px;
+}
+
+.glace-switch--lg .glace-switch__thumb {
+  width: 24px;
+  height: 24px;
+  left: 3px;
+  font-size: 13px;
+}
+
+.glace-switch--lg.glace-switch--checked .glace-switch__thumb {
+  left: calc(56px - 24px - 3px);
+}
+
+/* ─── Pill mode (both icon slots provided) ───────────────────────────────── */
+
+/* Suppress specular hover effect in pill mode (spec: "no hover effect in pill mode") */
+.glace-switch--pill .glace-switch__track {
+  --glace-hover-enabled: 0;
+}
+
+.glace-switch--pill .glace-switch__track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+/* Pill sizes — width = 2×padding(4px) + 2×thumb */
+.glace-switch--pill.glace-switch--sm .glace-switch__track {
+  width: 40px;
+  height: 22px;
+}
+
+.glace-switch--pill.glace-switch--md .glace-switch__track {
+  width: 52px;
+  height: 28px;
+}
+
+.glace-switch--pill.glace-switch--lg .glace-switch__track {
+  width: 64px;
+  height: 34px;
+}
+
+/* In pill mode the thumb is not absolutely positioned — it's a flex child */
+.glace-switch--pill .glace-switch__thumb {
+  position: static;
+  top: unset;
+  left: unset;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.55);
+  transition: background 0.2s ease;
+}
+
+/* Inactive icon in pill mode */
+.glace-switch--pill .glace-switch__thumb--inactive {
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.3;
+}
+
+/* Active icon in pill mode */
+.glace-switch--pill .glace-switch__thumb--active {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+/* ─── Label text ─────────────────────────────────────────────────────────── */
+
+.glace-switch__label {
+  color: var(--glace-text-primary);
+  font-size: 0.875rem;
+}
+
+/* ─── Backdrop filter fallback ───────────────────────────────────────────── */
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glace-switch__track {
+    background: rgba(30, 30, 30, 0.85);
+  }
+}
