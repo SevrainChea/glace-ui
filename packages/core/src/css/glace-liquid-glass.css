@@ -33,7 +33,7 @@
   );
   pointer-events: none;
   z-index: 1;
-  opacity: var(--glace-specular-ambient);
+  opacity: var(--glace-specular-ambient, 0);
   transition: opacity 0.3s ease;
 }
 
