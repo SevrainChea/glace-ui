@@ -14,8 +14,8 @@
 
 @supports (backdrop-filter: url(#test)) {
   .glace-glass {
-    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur)) saturate(1.3)
-      brightness(1.05);
+    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur)) saturate(1.4)
+      brightness(1.08);
   }
 }
 
@@ -33,12 +33,18 @@
   );
   pointer-events: none;
   z-index: 1;
-  opacity: 0;
+  opacity: var(--glace-specular-ambient);
   transition: opacity 0.3s ease;
 }
 
 .glace-glass.is-lit::before {
-  opacity: var(--glace-hover-enabled, 1);
+  opacity: min(
+    1,
+    calc(
+      var(--glace-specular-ambient) + var(--glace-specular-hover-boost) *
+        var(--glace-hover-enabled, 1)
+    )
+  );
 }
 
 .glace-glass::after {
@@ -49,6 +55,7 @@
   /* Bright top rim + subtle depth shadow */
   box-shadow:
     inset 0 1px 0 var(--glace-edge-light),
+    inset 1px 0 0 var(--glace-edge-light-left),
     inset 0 -1px 0 var(--glace-edge-shadow);
   /* Subtle warm→cool iridescent wash */
   background: linear-gradient(
