@@ -59,3 +59,5 @@ export function createGlaceTheme(overrides: Partial<GlaceTokens> = {}): GlaceTok
 
 export { trackGlaceLight } from './trackGlaceLight'
 export type { TrackGlaceLightOptions } from './trackGlaceLight'
+
+export { injectGlaceFilters } from './filters'

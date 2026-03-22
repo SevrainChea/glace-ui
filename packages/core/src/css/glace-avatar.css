@@ -8,8 +8,9 @@
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
   overflow: hidden;
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   flex-shrink: 0;
   --glace-specular-size: 70%;
 }

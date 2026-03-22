@@ -33,8 +33,9 @@
   border-radius: var(--glace-radius-full);
   background: var(--glace-bg);
   border: var(--glace-border-width) solid var(--glace-border);
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   transition:
     background 0.2s ease,
     border-color 0.2s ease,

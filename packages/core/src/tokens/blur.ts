@@ -7,7 +7,7 @@ export interface GlaceBlurTokens {
 
 /** Default blur tokens */
 export const glaceBlurTokens: GlaceBlurTokens = {
-  '--glace-blur': '16px',
-  '--glace-blur-intense': '24px',
-  '--glace-blur-subtle': '8px',
+  '--glace-blur': '3px',
+  '--glace-blur-intense': '6px',
+  '--glace-blur-subtle': '2px',
 }

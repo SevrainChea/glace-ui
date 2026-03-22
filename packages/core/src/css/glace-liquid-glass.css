@@ -1,6 +1,25 @@
-/* Liquid Glass — shared pseudo-element layers for all glace components.
-   ::before = specular highlight (water drop), ::after = edge light + depth tint.
+/* Liquid Glass — shared tokens and pseudo-element layers for all glace components.
+   ::before = specular highlight (water drop), ::after = edge light + iridescent wash.
    Components must set position: relative on their root element. */
+
+/* ─── Shared backdrop-filter token ──────────────────────────────────────────
+   Components use `backdrop-filter: var(--glace-backdrop-filter)`.
+   Override --glace-backdrop-blur on the component to change the blur amount.
+   The @supports block upgrades to SVG displacement refraction in Chrome.      */
+
+.glace-glass {
+  --glace-backdrop-blur: var(--glace-blur);
+  --glace-backdrop-filter: blur(var(--glace-backdrop-blur));
+}
+
+@supports (backdrop-filter: url(#test)) {
+  .glace-glass {
+    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur))
+      saturate(1.3) brightness(1.05);
+  }
+}
+
+/* ─── Pseudo-element layers ──────────────────────────────────────────────── */
 
 .glace-glass::before {
   content: '';
@@ -27,15 +46,43 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  /* Bright top rim + subtle depth shadow */
   box-shadow:
-    inset 1px 1px 0 var(--glace-edge-light),
-    inset -1px -1px 0 var(--glace-edge-shadow);
+    inset 0 1px 0 var(--glace-edge-light),
+    inset 0 -1px 0 var(--glace-edge-shadow);
+  /* Subtle warm→cool iridescent wash */
   background: linear-gradient(
-    135deg,
-    var(--glace-tint) 0%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.04) 100%
+    145deg,
+    rgba(255, 235, 210, 0.07) 0%,
+    var(--glace-tint) 30%,
+    transparent 60%,
+    rgba(210, 230, 255, 0.06) 100%
   );
   pointer-events: none;
   z-index: 1;
+}
+
+/* ─── Nested glass ───────────────────────────────────────────────────────────
+   Components inside a glass container need higher opacity + stronger borders
+   to remain legible. No backdrop-filter — the parent already handles it.      */
+
+.glace-glass .glace-glass,
+.glace-card .glace-button,
+.glace-card .glace-input,
+.glace-card .glace-badge,
+.glace-card .glace-select {
+  --glace-bg: var(--glace-bg-nested);
+  --glace-bg-hover: var(--glace-bg-nested);
+  --glace-border: var(--glace-border-nested);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Restore inset depth shadow for nested buttons */
+.glace-card .glace-button,
+.glace-glass .glace-button {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 3px 10px rgba(0, 0, 0, 0.25);
 }

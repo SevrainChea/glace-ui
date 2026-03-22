@@ -21,8 +21,9 @@
   border-radius: var(--glace-radius);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
   color: var(--glace-text-primary);
-  backdrop-filter: blur(var(--glace-blur-intense));
-  -webkit-backdrop-filter: blur(var(--glace-blur-intense));
+  --glace-backdrop-blur: var(--glace-blur-intense);
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   overflow: hidden;
 }
 
@@ -93,13 +94,11 @@
 }
 
 .glace-modal__content--blur-subtle {
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
 }
 
 .glace-modal__content--blur-medium {
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  --glace-backdrop-blur: var(--glace-blur);
 }
 
 @supports not (backdrop-filter: blur(1px)) {

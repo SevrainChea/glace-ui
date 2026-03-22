@@ -21,9 +21,9 @@ describe('glaceTokens', () => {
   })
 
   it('includes all blur tokens', () => {
-    expect(glaceTokens['--glace-blur']).toBe('16px')
-    expect(glaceTokens['--glace-blur-intense']).toBe('24px')
-    expect(glaceTokens['--glace-blur-subtle']).toBe('8px')
+    expect(glaceTokens['--glace-blur']).toBe('3px')
+    expect(glaceTokens['--glace-blur-intense']).toBe('6px')
+    expect(glaceTokens['--glace-blur-subtle']).toBe('2px')
   })
 
   it('includes all border tokens', () => {
@@ -60,11 +60,11 @@ describe('glaceLightTokens', () => {
   it('includes all light tokens', () => {
     expect(glaceLightTokens['--glace-light-x']).toBe('30%')
     expect(glaceLightTokens['--glace-light-y']).toBe('20%')
-    expect(glaceLightTokens['--glace-specular-intensity']).toBe('0.15')
+    expect(glaceLightTokens['--glace-specular-intensity']).toBe('0.22')
     expect(glaceLightTokens['--glace-specular-size']).toBe('80px')
     expect(glaceLightTokens['--glace-hover-enabled']).toBe('1')
-    expect(glaceLightTokens['--glace-tint']).toBe('rgba(255, 255, 255, 0.08)')
-    expect(glaceLightTokens['--glace-edge-light']).toBe('rgba(255, 255, 255, 0.25)')
+    expect(glaceLightTokens['--glace-tint']).toBe('rgba(255, 255, 255, 0.06)')
+    expect(glaceLightTokens['--glace-edge-light']).toBe('rgba(255, 255, 255, 0.48)')
     expect(glaceLightTokens['--glace-edge-shadow']).toBe('rgba(0, 0, 0, 0.15)')
   })
 

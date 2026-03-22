@@ -16,8 +16,9 @@
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
   outline: none;
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;

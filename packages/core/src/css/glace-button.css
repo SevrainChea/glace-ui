@@ -13,8 +13,8 @@
   padding: 0.5rem 1rem;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease,
@@ -116,3 +116,4 @@
     background: rgba(30, 30, 30, 0.85);
   }
 }
+

@@ -9,8 +9,8 @@
   background: var(--glace-bg);
   border-bottom: var(--glace-border-width) solid var(--glace-border);
   color: var(--glace-text-primary);
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   transition:
     background 0.3s ease,
     backdrop-filter 0.3s ease,
@@ -34,8 +34,8 @@
 .glace-navbar--scrolled {
   background: var(--glace-bg);
   border-bottom-color: var(--glace-border);
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
 }
 
 .glace-navbar__logo {
@@ -67,13 +67,11 @@
 }
 
 .glace-navbar--blur-subtle {
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
 }
 
 .glace-navbar--blur-strong {
-  backdrop-filter: blur(var(--glace-blur-intense));
-  -webkit-backdrop-filter: blur(var(--glace-blur-intense));
+  --glace-backdrop-blur: var(--glace-blur-intense);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
