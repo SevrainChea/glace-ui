@@ -127,9 +127,6 @@
 /* Suppress specular hover effect in pill mode (spec: "no hover effect in pill mode") */
 .glace-switch--pill .glace-switch__track {
   --glace-hover-enabled: 0;
-}
-
-.glace-switch--pill .glace-switch__track {
   display: flex;
   align-items: center;
   justify-content: space-between;
