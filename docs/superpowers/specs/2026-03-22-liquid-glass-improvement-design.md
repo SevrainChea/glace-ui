@@ -32,46 +32,62 @@ The current liquid glass effect is visually underpowered in two areas:
 
 ### 1. Dual-Stage SVG Filter (`packages/core/src/utils/filters.ts`)
 
-Upgrade from single-stage to two-stage displacement:
+Two displacement passes chained **in series** — the output of Stage 1 feeds Stage 2:
 
 **Stage 1 — Rim distortion (existing, strengthened):**
 - Canvas-generated 256×256 bell-curve displacement map (peak at r≈0.85)
-- `feImage` → `feDisplacementMap` using R/G channels
-- Scale bumped from `0.10` → `0.18`
+- `feImage` → `feDisplacementMap` using R/G channels, result `"rimDisplaced"`
+- Scale bumped `0.10` → `0.18`
 
 **Stage 2 — Edge lens (new):**
-- `feGaussianBlur` on `SourceAlpha` with `stdDeviation="0.35"` (objectBoundingBox units)
-- Second `feDisplacementMap` using the blurred alpha on both X and Y channels at `scale="0.06"`
-- Creates soft background bending around the component perimeter
+- `feGaussianBlur(in="SourceAlpha", stdDeviation="20", result="alphaHalo")` — blurs the original element's alpha channel with a fixed 20px radius
+- The current filter element has `primitiveUnits="objectBoundingBox"` — this **must be changed to `userSpaceOnUse"`** so stdDeviation is in pixels rather than a percentage of the bounding box (prevents over-blurring on small components like GlaceSwitch)
+- Second `feDisplacementMap(in="rimDisplaced", in2="alphaHalo", xChannelSelector="A", yChannelSelector="A", scale="0.06")`
+- Adds soft background bending around the component perimeter on top of the rim distortion
 
-**Compositing:**
-- Both displacement outputs merged via `feBlend mode="screen"`
-- Filter region expanded to `-8% / 116%` to prevent edge clipping
+**Full primitive pipeline (in order):**
+```
+1. feImage(href=dataUrl, x="0", y="0", width="100%", height="100%", result="dispMap")
+2. feDisplacementMap(in="SourceGraphic", in2="dispMap", xChannelSelector="R", yChannelSelector="G", scale="0.18", result="rimDisplaced")
+3. feGaussianBlur(in="SourceAlpha", stdDeviation="20", result="alphaHalo")
+4. feDisplacementMap(in="rimDisplaced", in2="alphaHalo", xChannelSelector="A", yChannelSelector="A", scale="0.06")
+```
+
+Note: `feImage` must use `width="100%" height="100%"` (not `width="1" height="1"`) — the existing code uses unit-fractions that worked under `objectBoundingBox` but would collapse to 1×1px under `userSpaceOnUse`. Percentages resolve correctly in both modes.
+
+**Filter region:**
+- Expand to `x="-8%" y="-8%" width="116%" height="116%"` to prevent edge clipping at higher displacement scale.
+- `filterUnits="objectBoundingBox"`, `primitiveUnits="userSpaceOnUse"` (override from current `objectBoundingBox`).
 
 ### 2. CSS Changes (`packages/core/src/css/glace-liquid-glass.css`)
 
 **Always-on specular (`::before`):**
 
+Remove `opacity: 0` default and the `.is-lit` rule. Replace with:
+
 ```css
-/* Remove opacity: 0 default and .is-lit rule. Replace with: */
 .glace-glass::before {
   opacity: var(--glace-specular-ambient);
 }
 .glace-glass.is-lit::before {
-  opacity: calc(var(--glace-specular-ambient) + var(--glace-specular-hover-boost) * var(--glace-hover-enabled, 1));
+  opacity: min(1, calc(var(--glace-specular-ambient) + var(--glace-specular-hover-boost) * var(--glace-hover-enabled, 1)));
 }
 ```
 
-The ambient gleam is always visible. `--glace-hover-enabled: 0` (e.g. pill switch mode) suppresses the hover boost but retains the ambient gleam.
+- Ambient gleam always visible at `--glace-specular-ambient`
+- On hover, brightens by `--glace-specular-hover-boost`; `min(1, ...)` prevents overflow past full opacity
+- `--glace-hover-enabled: 0` (pill switch mode) suppresses the hover boost but **retains the ambient gleam** — this is a deliberate behavioral change from the current implementation where `opacity: var(--glace-hover-enabled, 1)` caused full suppression at rest
 
 **Stronger edge highlight (`::after` box-shadow):**
 
 ```css
 box-shadow:
-  inset 0 1px 0 rgba(255, 255, 255, 0.72),   /* top highlight — up from 0.48 */
-  inset 1px 0 0 rgba(255, 255, 255, 0.18),   /* new: left edge gleam */
+  inset 0 1px 0 var(--glace-edge-light),
+  inset 1px 0 0 var(--glace-edge-light-left),
   inset 0 -1px 0 var(--glace-edge-shadow);
 ```
+
+The existing `--glace-edge-light` token is kept and its default bumped (see tokens section). A new `--glace-edge-light-left` token handles the left-edge gleam — no hardcoded values.
 
 **Filter chain (`@supports` block):**
 
@@ -82,14 +98,21 @@ Up from `saturate(1.3) brightness(1.05)`.
 
 ### 3. Token Changes (`packages/core/src/tokens/light.ts`)
 
-Two new tokens added to `GlaceLightTokens` interface and all three presets:
+**New tokens** added to `GlaceLightTokens` interface as **required keys of type `string`**, following the existing pattern (all token values are strings, e.g. `'0.18'` not `0.18`). All three presets must include them (`glaceLightTokens` as required; `glaceLightTokensLight` and `glaceLightTokensDark` as `Partial<GlaceLightTokens>` overrides):
 
 | Token | Default | Light | Dark |
 |---|---|---|---|
 | `--glace-specular-ambient` | `0.18` | `0.22` | `0.12` |
 | `--glace-specular-hover-boost` | `0.14` | `0.14` | `0.14` |
+| `--glace-edge-light-left` | `rgba(255, 255, 255, 0.18)` | `rgba(255, 255, 255, 0.22)` | `rgba(255, 255, 255, 0.12)` |
 
-The `--glace-specular-intensity` token (used as radial gradient opacity) is unchanged — it controls the gradient stop, while `--glace-specular-ambient` controls the layer opacity.
+**Updated token defaults** (existing tokens, values bumped):
+
+| Token | Old default | New default | Light | Dark |
+|---|---|---|---|---|
+| `--glace-edge-light` | `rgba(255, 255, 255, 0.48)` | `rgba(255, 255, 255, 0.72)` | Remove the `0.55` entry from `glaceLightTokensLight` — Light inherits `0.72` from default | `rgba(255, 255, 255, 0.28)` |
+
+The `--glace-specular-intensity` token (controls the radial gradient stop opacity) is unchanged.
 
 ---
 
@@ -97,9 +120,9 @@ The `--glace-specular-intensity` token (used as radial gradient opacity) is unch
 
 | File | Change |
 |---|---|
-| `packages/core/src/utils/filters.ts` | Dual-stage SVG filter (rim + edge-lens), expanded filter region |
-| `packages/core/src/css/glace-liquid-glass.css` | Always-on specular, stronger edge highlight, saturation/brightness boost |
-| `packages/core/src/tokens/light.ts` | `--glace-specular-ambient` and `--glace-specular-hover-boost` tokens |
+| `packages/core/src/utils/filters.ts` | Dual-stage SVG filter: rim distortion → edge lens in series; expanded filter region |
+| `packages/core/src/css/glace-liquid-glass.css` | Always-on specular with `min()` clamp, `--glace-edge-light-left` token reference, saturation/brightness boost |
+| `packages/core/src/tokens/light.ts` | Three new tokens + updated `--glace-edge-light` default across all three presets |
 
 No other files require changes. All 9 component CSS files inherit the improvements automatically through `.glace-glass`.
 
@@ -107,7 +130,9 @@ No other files require changes. All 9 component CSS files inherit the improvemen
 
 ## Testing
 
-- Visual regression: playground with forest/light/light-gradient backgrounds (refraction most visible on photo backgrounds)
-- Verify `--glace-hover-enabled: 0` (GlaceSwitch pill mode) still suppresses hover boost but retains ambient gleam
-- Verify nested glass components (`.glace-card .glace-button`) are unaffected — they have `backdrop-filter: none` so the filter chain change is irrelevant for them
-- Chrome only for refraction (SVG in backdrop-filter); Safari/Firefox fall back to plain blur gracefully
+- **Visual regression:** playground with forest/light/light-gradient backgrounds (refraction most visible on photo backgrounds)
+- **Small component check:** verify edge-lens displacement on GlaceSwitch, GlaceBadge, GlaceAvatar — the `stdDeviation="20px"` in userSpaceOnUse is fixed pixels and should not over-blur on narrow elements
+- **Behavioral change — `--glace-hover-enabled: 0`:** GlaceSwitch pill mode previously showed zero specular at rest; it will now show the ambient gleam (`--glace-specular-ambient`). Confirm this is intentional and visually acceptable.
+- **Nested glass:** `.glace-card .glace-button` has `backdrop-filter: none` — filter chain change is irrelevant for nested components; no visual regression expected
+- **Token unit test:** extend `tokens.test.ts` to assert the three new tokens (`--glace-specular-ambient`, `--glace-specular-hover-boost`, `--glace-edge-light-left`) at their default values in `glaceLightTokens`
+- **Fallback:** Safari/Firefox have no `backdrop-filter: url(...)` support — confirm plain `blur()` fallback still renders cleanly with no displacement artifacts
