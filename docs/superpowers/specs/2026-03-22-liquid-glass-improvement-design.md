@@ -36,8 +36,7 @@ Two displacement passes chained **in series** — the output of Stage 1 feeds St
 
 **Stage 1 — Rim distortion (existing, strengthened):**
 - Canvas-generated 256×256 bell-curve displacement map (peak at r≈0.85)
-- `feImage` → `feDisplacementMap` using R/G channels, result `"rimDisplaced"`
-- Scale bumped `0.10` → `0.18`
+- `feImage` → `feDisplacementMap` using R/G channels; bump scale `0.10` → `0.18` and **add `result="rimDisplaced"`** (the existing element at `filters.ts:93` has no `result` attribute — it must be added for Stage 2 to reference it)
 
 **Stage 2 — Edge lens (new):**
 - `feGaussianBlur(in="SourceAlpha", stdDeviation="20", result="alphaHalo")` — blurs the original element's alpha channel with a fixed 20px radius
@@ -131,8 +130,8 @@ No other files require changes. All 9 component CSS files inherit the improvemen
 ## Testing
 
 - **Visual regression:** playground with forest/light/light-gradient backgrounds (refraction most visible on photo backgrounds)
-- **Small component check:** verify edge-lens displacement on GlaceSwitch, GlaceBadge, GlaceAvatar — the `stdDeviation="20px"` in userSpaceOnUse is fixed pixels and should not over-blur on narrow elements
+- **Small component check:** verify edge-lens displacement on GlaceSwitch, GlaceBadge, GlaceAvatar — the `stdDeviation="20"` (bare number, no unit) in userSpaceOnUse is fixed pixels and should not over-blur on narrow elements
 - **Behavioral change — `--glace-hover-enabled: 0`:** GlaceSwitch pill mode previously showed zero specular at rest; it will now show the ambient gleam (`--glace-specular-ambient`). Confirm this is intentional and visually acceptable.
 - **Nested glass:** `.glace-card .glace-button` has `backdrop-filter: none` — filter chain change is irrelevant for nested components; no visual regression expected
-- **Token unit test:** extend `tokens.test.ts` to assert the three new tokens (`--glace-specular-ambient`, `--glace-specular-hover-boost`, `--glace-edge-light-left`) at their default values in `glaceLightTokens`
+- **Token unit test:** extend `tokens.test.ts` to assert the three new tokens (`--glace-specular-ambient`, `--glace-specular-hover-boost`, `--glace-edge-light-left`) at their default values in `glaceLightTokens` using string form, e.g. `expect(glaceLightTokens['--glace-specular-ambient']).toBe('0.18')`
 - **Fallback:** Safari/Firefox have no `backdrop-filter: url(...)` support — confirm plain `blur()` fallback still renders cleanly with no displacement artifacts
