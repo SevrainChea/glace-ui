@@ -9,6 +9,9 @@ export interface GlaceLightTokens {
   '--glace-tint': string
   '--glace-edge-light': string
   '--glace-edge-shadow': string
+  '--glace-specular-ambient': string
+  '--glace-specular-hover-boost': string
+  '--glace-edge-light-left': string
 }
 
 /** Default liquid glass light tokens */
@@ -19,16 +22,21 @@ export const glaceLightTokens: GlaceLightTokens = {
   '--glace-specular-size': '80px',
   '--glace-hover-enabled': '1',
   '--glace-tint': 'rgba(255, 255, 255, 0.06)',
-  '--glace-edge-light': 'rgba(255, 255, 255, 0.48)',
+  '--glace-edge-light': 'rgba(255, 255, 255, 0.72)',
   '--glace-edge-shadow': 'rgba(0, 0, 0, 0.15)',
+  '--glace-specular-ambient': '0.18',
+  '--glace-specular-hover-boost': '0.14',
+  '--glace-edge-light-left': 'rgba(255, 255, 255, 0.18)',
 }
 
 /** Light theme overrides for liquid glass */
 export const glaceLightTokensLight: Partial<GlaceLightTokens> = {
   '--glace-specular-intensity': '0.28',
   '--glace-tint': 'rgba(255, 255, 255, 0.10)',
-  '--glace-edge-light': 'rgba(255, 255, 255, 0.55)',
   '--glace-edge-shadow': 'rgba(0, 0, 0, 0.06)',
+  '--glace-specular-ambient': '0.22',
+  '--glace-specular-hover-boost': '0.14',
+  '--glace-edge-light-left': 'rgba(255, 255, 255, 0.22)',
 }
 
 /** Dark theme overrides for liquid glass */
@@ -37,4 +45,7 @@ export const glaceLightTokensDark: Partial<GlaceLightTokens> = {
   '--glace-tint': 'rgba(255, 255, 255, 0.04)',
   '--glace-edge-light': 'rgba(255, 255, 255, 0.28)',
   '--glace-edge-shadow': 'rgba(0, 0, 0, 0.25)',
+  '--glace-specular-ambient': '0.12',
+  '--glace-specular-hover-boost': '0.14',
+  '--glace-edge-light-left': 'rgba(255, 255, 255, 0.12)',
 }

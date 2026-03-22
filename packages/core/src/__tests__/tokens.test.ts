@@ -64,8 +64,11 @@ describe('glaceLightTokens', () => {
     expect(glaceLightTokens['--glace-specular-size']).toBe('80px')
     expect(glaceLightTokens['--glace-hover-enabled']).toBe('1')
     expect(glaceLightTokens['--glace-tint']).toBe('rgba(255, 255, 255, 0.06)')
-    expect(glaceLightTokens['--glace-edge-light']).toBe('rgba(255, 255, 255, 0.48)')
+    expect(glaceLightTokens['--glace-edge-light']).toBe('rgba(255, 255, 255, 0.72)')
     expect(glaceLightTokens['--glace-edge-shadow']).toBe('rgba(0, 0, 0, 0.15)')
+    expect(glaceLightTokens['--glace-specular-ambient']).toBe('0.18')
+    expect(glaceLightTokens['--glace-specular-hover-boost']).toBe('0.14')
+    expect(glaceLightTokens['--glace-edge-light-left']).toBe('rgba(255, 255, 255, 0.18)')
   })
 
   it('is included in composite glaceTokens', () => {
