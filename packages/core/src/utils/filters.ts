@@ -1,9 +1,14 @@
 /**
- * Generates and injects an SVG displacement filter for glass refraction.
+ * Generates and injects a dual-stage SVG displacement filter for glass refraction.
  *
- * A 256×256 displacement map is produced via canvas: R/G channels encode outward
- * normals with a bell-curve strength peaking at the rim of the element, creating
- * the "water droplet lens" distortion characteristic of liquid glass.
+ * **Stage 1 — Rim distortion:** A 256×256 displacement map is produced via canvas:
+ * R/G channels encode outward normals with a bell-curve strength peaking at ~85%
+ * radius, creating a "water droplet lens" ring distortion. Result: `rimDisplaced`.
+ *
+ * **Stage 2 — Edge lens:** A feGaussianBlur on SourceAlpha produces a soft halo
+ * (`alphaHalo`) that follows the element's perimeter. A second feDisplacementMap
+ * uses this halo (A/A channels) to bend the Stage 1 output — creating a "liquid
+ * boundary" effect where the background visibly curves around the component edge.
  *
  * The filter is referenced as `url(#glace-refraction)` in backdrop-filter.
  * Chrome supports SVG filters in backdrop-filter; Safari/Firefox fall back to
