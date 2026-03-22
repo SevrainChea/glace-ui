@@ -13,8 +13,9 @@
   font-weight: 500;
   line-height: 1;
   padding: 0.25rem 0.625rem;
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   white-space: nowrap;
   --glace-specular-size: 80%;
 }

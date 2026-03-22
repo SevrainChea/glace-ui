@@ -6,8 +6,8 @@
   border-radius: var(--glace-radius);
   box-shadow: var(--glace-shadow);
   color: var(--glace-text-primary);
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
   overflow: hidden;
   transition:
     background 0.2s ease,
@@ -27,13 +27,11 @@
 }
 
 .glace-card--blur-subtle {
-  backdrop-filter: blur(var(--glace-blur-subtle));
-  -webkit-backdrop-filter: blur(var(--glace-blur-subtle));
+  --glace-backdrop-blur: var(--glace-blur-subtle);
 }
 
 .glace-card--blur-strong {
-  backdrop-filter: blur(var(--glace-blur-intense));
-  -webkit-backdrop-filter: blur(var(--glace-blur-intense));
+  --glace-backdrop-blur: var(--glace-blur-intense);
 }
 
 .glace-card--radius-sm {
@@ -71,21 +69,5 @@
 @supports not (backdrop-filter: blur(1px)) {
   .glace-card {
     background: rgba(30, 30, 30, 0.85);
-  }
-}
-
-@supports (backdrop-filter: url(#test)) {
-  .glace-card {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur)) saturate(1.3) brightness(1.05);
-  }
-
-  .glace-card--blur-subtle {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-subtle)) saturate(1.3)
-      brightness(1.05);
-  }
-
-  .glace-card--blur-strong {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-intense)) saturate(1.3)
-      brightness(1.05);
   }
 }

@@ -27,8 +27,8 @@
   border-radius: var(--glace-radius);
   color: var(--glace-text-primary);
   padding: 0.75rem 1rem;
-  backdrop-filter: blur(var(--glace-blur));
-  -webkit-backdrop-filter: blur(var(--glace-blur));
+  backdrop-filter: var(--glace-backdrop-filter);
+  -webkit-backdrop-filter: var(--glace-backdrop-filter);
 }
 
 .glace-chat-bubble__content > * {

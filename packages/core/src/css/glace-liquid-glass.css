@@ -1,6 +1,25 @@
-/* Liquid Glass — shared pseudo-element layers for all glace components.
+/* Liquid Glass — shared tokens and pseudo-element layers for all glace components.
    ::before = specular highlight (water drop), ::after = edge light + iridescent wash.
    Components must set position: relative on their root element. */
+
+/* ─── Shared backdrop-filter token ──────────────────────────────────────────
+   Components use `backdrop-filter: var(--glace-backdrop-filter)`.
+   Override --glace-backdrop-blur on the component to change the blur amount.
+   The @supports block upgrades to SVG displacement refraction in Chrome.      */
+
+.glace-glass {
+  --glace-backdrop-blur: var(--glace-blur);
+  --glace-backdrop-filter: blur(var(--glace-backdrop-blur));
+}
+
+@supports (backdrop-filter: url(#test)) {
+  .glace-glass {
+    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur))
+      saturate(1.3) brightness(1.05);
+  }
+}
+
+/* ─── Pseudo-element layers ──────────────────────────────────────────────── */
 
 .glace-glass::before {
   content: '';
@@ -43,8 +62,10 @@
   z-index: 1;
 }
 
-/* Nested glass: components inside a glass container need higher opacity +
-   stronger borders to remain legible. No backdrop-filter — parent handles it. */
+/* ─── Nested glass ───────────────────────────────────────────────────────────
+   Components inside a glass container need higher opacity + stronger borders
+   to remain legible. No backdrop-filter — the parent already handles it.      */
+
 .glace-glass .glace-glass,
 .glace-card .glace-button,
 .glace-card .glace-input,
@@ -57,7 +78,7 @@
   -webkit-backdrop-filter: none;
 }
 
-/* Restore box-shadow for nested buttons to add depth */
+/* Restore inset depth shadow for nested buttons */
 .glace-card .glace-button,
 .glace-glass .glace-button {
   box-shadow:
