@@ -119,6 +119,6 @@
 
 @supports (backdrop-filter: url(#test)) {
   .glace-button:not(.glace-button--ghost):not(.glace-button--outline) {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur)) saturate(1.5) brightness(1.02);
+    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur)) saturate(2.2) brightness(1.05);
   }
 }

@@ -76,14 +76,16 @@
 
 @supports (backdrop-filter: url(#test)) {
   .glace-card {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur)) saturate(1.5) brightness(1.02);
+    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur)) saturate(2.2) brightness(1.05);
   }
 
   .glace-card--blur-subtle {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-subtle)) saturate(1.5) brightness(1.02);
+    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-subtle)) saturate(2.2)
+      brightness(1.05);
   }
 
   .glace-card--blur-strong {
-    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-intense)) saturate(1.5) brightness(1.02);
+    backdrop-filter: url(#glace-refraction) blur(var(--glace-blur-intense)) saturate(2.2)
+      brightness(1.05);
   }
 }

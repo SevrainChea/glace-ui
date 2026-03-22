@@ -38,7 +38,7 @@ export function injectGlaceFilters(doc?: Document): void {
 
       // Bell curve: peak at r≈0.85, zero at center and beyond edge
       const t = Math.max(0, 1 - Math.abs(r - 0.85) / 0.35)
-      const strength = t * t * 30
+      const strength = t * t * 60
 
       const len = r < 0.001 ? 1 : r
       const nx = dx / len
@@ -93,7 +93,7 @@ export function injectGlaceFilters(doc?: Document): void {
   const feDisp = d.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap')
   feDisp.setAttribute('in', 'SourceGraphic')
   feDisp.setAttribute('in2', 'dispMap')
-  feDisp.setAttribute('scale', '0.04')
+  feDisp.setAttribute('scale', '0.10')
   feDisp.setAttribute('xChannelSelector', 'R')
   feDisp.setAttribute('yChannelSelector', 'G')
 
