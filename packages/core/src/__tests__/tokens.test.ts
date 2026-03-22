@@ -7,6 +7,8 @@ import {
   glaceBorderTokens,
   glaceColorTokens,
   glaceLightTokens,
+  glaceLightTokensLight,
+  glaceLightTokensDark,
 } from '../tokens'
 import type { GlaceTokens } from '../tokens'
 
@@ -81,5 +83,25 @@ describe('glaceLightTokens', () => {
     const _dark: GlaceTokens = glaceTokensDark
     expect(_light['--glace-specular-intensity']).toBeDefined()
     expect(_dark['--glace-specular-intensity']).toBeDefined()
+  })
+})
+
+describe('glaceLightTokensLight (light theme preset)', () => {
+  it('intentionally omits --glace-edge-light', () => {
+    expect(glaceLightTokensLight['--glace-edge-light']).toBeUndefined()
+  })
+
+  it('includes custom values for new tokens', () => {
+    expect(glaceLightTokensLight['--glace-specular-ambient']).toBe('0.22')
+    expect(glaceLightTokensLight['--glace-specular-hover-boost']).toBe('0.14')
+    expect(glaceLightTokensLight['--glace-edge-light-left']).toBe('rgba(255, 255, 255, 0.22)')
+  })
+})
+
+describe('glaceLightTokensDark (dark theme preset)', () => {
+  it('includes custom values for new tokens', () => {
+    expect(glaceLightTokensDark['--glace-specular-ambient']).toBe('0.12')
+    expect(glaceLightTokensDark['--glace-specular-hover-boost']).toBe('0.14')
+    expect(glaceLightTokensDark['--glace-edge-light-left']).toBe('rgba(255, 255, 255, 0.12)')
   })
 })
