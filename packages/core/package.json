@@ -1,6 +1,6 @@
 {
   "name": "@glace-ui/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Framework-agnostic liquid glass design tokens, utilities, and CSS",
   "type": "module",
   "exports": {

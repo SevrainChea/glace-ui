@@ -14,8 +14,8 @@
 
 @supports (backdrop-filter: url(#test)) {
   .glace-glass {
-    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur))
-      saturate(1.3) brightness(1.05);
+    --glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur)) saturate(1.3)
+      brightness(1.05);
   }
 }
 
