@@ -12,18 +12,19 @@
 
 ## File Map
 
-| File | Change |
-|---|---|
-| `packages/core/src/tokens/light.ts` | Add 3 new tokens to interface + all presets; bump `--glace-edge-light` default |
+| File                                           | Change                                                                                                            |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `packages/core/src/tokens/light.ts`            | Add 3 new tokens to interface + all presets; bump `--glace-edge-light` default                                    |
 | `packages/core/src/css/glace-liquid-glass.css` | Always-on specular with `min()` clamp; new `--glace-edge-light-left` in `::after`; stronger saturation/brightness |
-| `packages/core/src/utils/filters.ts` | Dual-stage SVG filter: rim distortion → edge lens in series; update filter attributes |
-| `packages/core/src/__tests__/tokens.test.ts` | Assert three new tokens at default values |
+| `packages/core/src/utils/filters.ts`           | Dual-stage SVG filter: rim distortion → edge lens in series; update filter attributes                             |
+| `packages/core/src/__tests__/tokens.test.ts`   | Assert three new tokens at default values                                                                         |
 
 ---
 
 ## Task 1: Add new tokens to `light.ts`
 
 **Files:**
+
 - Modify: `packages/core/src/tokens/light.ts`
 - Test: `packages/core/src/__tests__/tokens.test.ts`
 
@@ -126,6 +127,7 @@ git commit -m "feat(core): add specular-ambient, specular-hover-boost, edge-ligh
 ## Task 2: Update CSS in `glace-liquid-glass.css`
 
 **Files:**
+
 - Modify: `packages/core/src/css/glace-liquid-glass.css`
 
 No unit tests for CSS — validate visually in the playground (Task 4).
@@ -157,7 +159,13 @@ Replace the `.glace-glass.is-lit::before` rule body with:
 
 ```css
 .glace-glass.is-lit::before {
-  opacity: min(1, calc(var(--glace-specular-ambient) + var(--glace-specular-hover-boost) * var(--glace-hover-enabled, 1)));
+  opacity: min(
+    1,
+    calc(
+      var(--glace-specular-ambient) + var(--glace-specular-hover-boost) *
+        var(--glace-hover-enabled, 1)
+    )
+  );
 }
 ```
 
@@ -209,6 +217,7 @@ git commit -m "feat(core): always-on ambient specular, stronger edge highlight a
 ## Task 3: Upgrade SVG filter in `filters.ts`
 
 **Files:**
+
 - Modify: `packages/core/src/utils/filters.ts`
 
 - [ ] **Step 1: Update filter element attributes**
@@ -217,11 +226,11 @@ In `packages/core/src/utils/filters.ts`, find the block that sets attributes on 
 
 ```ts
 filter.setAttribute('filterUnits', 'objectBoundingBox')
-filter.setAttribute('primitiveUnits', 'objectBoundingBox')   // change this line
-filter.setAttribute('x', '-5%')                               // change
-filter.setAttribute('y', '-5%')                               // change
-filter.setAttribute('width', '110%')                          // change
-filter.setAttribute('height', '110%')                         // change
+filter.setAttribute('primitiveUnits', 'objectBoundingBox') // change this line
+filter.setAttribute('x', '-5%') // change
+filter.setAttribute('y', '-5%') // change
+filter.setAttribute('width', '110%') // change
+filter.setAttribute('height', '110%') // change
 ```
 
 To:
@@ -283,6 +292,7 @@ filter.appendChild(feDisp2)
 ```
 
 The full primitive order inside `filter` must be:
+
 1. `feImage` (dispMap)
 2. `feDisp` (rimDisplaced) — Stage 1
 3. `feBlur` (alphaHalo) — Stage 2 input
@@ -316,6 +326,7 @@ git commit -m "feat(core): dual-stage SVG refraction — rim distortion + edge l
 ## Task 4: Visual verification in playground
 
 **Files:**
+
 - No changes — read-only verification
 
 - [ ] **Step 1: Start the playground**

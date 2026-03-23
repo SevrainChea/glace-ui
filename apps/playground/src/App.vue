@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useGlaceTheme } from '@glace-ui/vue'
+import { glaceTokensLight, glaceTokensDark, injectGlaceTokens } from '@glace-ui/core'
 
 useGlaceTheme()
 
@@ -14,6 +15,11 @@ const switchLg = ref(false)
 const switchNotif = ref(false)
 const switchIcon = ref(false)
 const isDark = ref(false)
+
+watch(isDark, (newVal) => {
+  const tokens = newVal ? glaceTokensLight : glaceTokensDark
+  injectGlaceTokens(tokens)
+})
 
 const selectedBg = ref('forest')
 

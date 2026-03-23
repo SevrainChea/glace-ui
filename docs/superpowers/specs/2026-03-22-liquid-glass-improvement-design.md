@@ -35,16 +35,19 @@ The current liquid glass effect is visually underpowered in two areas:
 Two displacement passes chained **in series** — the output of Stage 1 feeds Stage 2:
 
 **Stage 1 — Rim distortion (existing, strengthened):**
+
 - Canvas-generated 256×256 bell-curve displacement map (peak at r≈0.85)
 - `feImage` → `feDisplacementMap` using R/G channels; bump scale `0.10` → `0.18` and **add `result="rimDisplaced"`** (the existing element at `filters.ts:93` has no `result` attribute — it must be added for Stage 2 to reference it)
 
 **Stage 2 — Edge lens (new):**
+
 - `feGaussianBlur(in="SourceAlpha", stdDeviation="20", result="alphaHalo")` — blurs the original element's alpha channel with a fixed 20px radius
 - The current filter element has `primitiveUnits="objectBoundingBox"` — this **must be changed to `userSpaceOnUse"`** so stdDeviation is in pixels rather than a percentage of the bounding box (prevents over-blurring on small components like GlaceSwitch)
 - Second `feDisplacementMap(in="rimDisplaced", in2="alphaHalo", xChannelSelector="A", yChannelSelector="A", scale="0.06")`
 - Adds soft background bending around the component perimeter on top of the rim distortion
 
 **Full primitive pipeline (in order):**
+
 ```
 1. feImage(href=dataUrl, x="0", y="0", width="100%", height="100%", result="dispMap")
 2. feDisplacementMap(in="SourceGraphic", in2="dispMap", xChannelSelector="R", yChannelSelector="G", scale="0.18", result="rimDisplaced")
@@ -55,6 +58,7 @@ Two displacement passes chained **in series** — the output of Stage 1 feeds St
 Note: `feImage` must use `width="100%" height="100%"` (not `width="1" height="1"`) — the existing code uses unit-fractions that worked under `objectBoundingBox` but would collapse to 1×1px under `userSpaceOnUse`. Percentages resolve correctly in both modes.
 
 **Filter region:**
+
 - Expand to `x="-8%" y="-8%" width="116%" height="116%"` to prevent edge clipping at higher displacement scale.
 - `filterUnits="objectBoundingBox"`, `primitiveUnits="userSpaceOnUse"` (override from current `objectBoundingBox`).
 
@@ -69,7 +73,13 @@ Remove `opacity: 0` default and the `.is-lit` rule. Replace with:
   opacity: var(--glace-specular-ambient);
 }
 .glace-glass.is-lit::before {
-  opacity: min(1, calc(var(--glace-specular-ambient) + var(--glace-specular-hover-boost) * var(--glace-hover-enabled, 1)));
+  opacity: min(
+    1,
+    calc(
+      var(--glace-specular-ambient) + var(--glace-specular-hover-boost) *
+        var(--glace-hover-enabled, 1)
+    )
+  );
 }
 ```
 
@@ -91,24 +101,26 @@ The existing `--glace-edge-light` token is kept and its default bumped (see toke
 **Filter chain (`@supports` block):**
 
 ```css
---glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur)) saturate(1.4) brightness(1.08);
+--glace-backdrop-filter: url(#glace-refraction) blur(var(--glace-backdrop-blur)) saturate(1.4)
+  brightness(1.08);
 ```
+
 Up from `saturate(1.3) brightness(1.05)`.
 
 ### 3. Token Changes (`packages/core/src/tokens/light.ts`)
 
 **New tokens** added to `GlaceLightTokens` interface as **required keys of type `string`**, following the existing pattern (all token values are strings, e.g. `'0.18'` not `0.18`). All three presets must include them (`glaceLightTokens` as required; `glaceLightTokensLight` and `glaceLightTokensDark` as `Partial<GlaceLightTokens>` overrides):
 
-| Token | Default | Light | Dark |
-|---|---|---|---|
-| `--glace-specular-ambient` | `0.18` | `0.22` | `0.12` |
-| `--glace-specular-hover-boost` | `0.14` | `0.14` | `0.14` |
-| `--glace-edge-light-left` | `rgba(255, 255, 255, 0.18)` | `rgba(255, 255, 255, 0.22)` | `rgba(255, 255, 255, 0.12)` |
+| Token                          | Default                     | Light                       | Dark                        |
+| ------------------------------ | --------------------------- | --------------------------- | --------------------------- |
+| `--glace-specular-ambient`     | `0.18`                      | `0.22`                      | `0.12`                      |
+| `--glace-specular-hover-boost` | `0.14`                      | `0.14`                      | `0.14`                      |
+| `--glace-edge-light-left`      | `rgba(255, 255, 255, 0.18)` | `rgba(255, 255, 255, 0.22)` | `rgba(255, 255, 255, 0.12)` |
 
 **Updated token defaults** (existing tokens, values bumped):
 
-| Token | Old default | New default | Light | Dark |
-|---|---|---|---|---|
+| Token                | Old default                 | New default                 | Light                                                                                     | Dark                        |
+| -------------------- | --------------------------- | --------------------------- | ----------------------------------------------------------------------------------------- | --------------------------- |
 | `--glace-edge-light` | `rgba(255, 255, 255, 0.48)` | `rgba(255, 255, 255, 0.72)` | Remove the `0.55` entry from `glaceLightTokensLight` — Light inherits `0.72` from default | `rgba(255, 255, 255, 0.28)` |
 
 The `--glace-specular-intensity` token (controls the radial gradient stop opacity) is unchanged.
@@ -117,11 +129,11 @@ The `--glace-specular-intensity` token (controls the radial gradient stop opacit
 
 ## Files Changed
 
-| File | Change |
-|---|---|
-| `packages/core/src/utils/filters.ts` | Dual-stage SVG filter: rim distortion → edge lens in series; expanded filter region |
+| File                                           | Change                                                                                                        |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `packages/core/src/utils/filters.ts`           | Dual-stage SVG filter: rim distortion → edge lens in series; expanded filter region                           |
 | `packages/core/src/css/glace-liquid-glass.css` | Always-on specular with `min()` clamp, `--glace-edge-light-left` token reference, saturation/brightness boost |
-| `packages/core/src/tokens/light.ts` | Three new tokens + updated `--glace-edge-light` default across all three presets |
+| `packages/core/src/tokens/light.ts`            | Three new tokens + updated `--glace-edge-light` default across all three presets                              |
 
 No other files require changes. All 9 component CSS files inherit the improvements automatically through `.glace-glass`.
 
