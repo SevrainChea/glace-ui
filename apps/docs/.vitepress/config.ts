@@ -29,6 +29,8 @@ export default defineConfig({
           { text: 'Modal', link: '/components/modal' },
           { text: 'Chat Bubble', link: '/components/chat-bubble' },
           { text: 'Avatar', link: '/components/avatar' },
+          { text: 'Select', link: '/components/select' },
+          { text: 'Switch', link: '/components/switch' },
         ],
       },
     ],
