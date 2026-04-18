@@ -23,6 +23,9 @@ export function trackGlaceLight(
   options: TrackGlaceLightOptions = {},
 ): () => void {
   const { intensity = 1, lerpFactor = 0.15 } = options
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   let targetX = 50
   let targetY = 50
@@ -54,6 +57,14 @@ export function trackGlaceLight(
 
     targetX = Math.max(0, Math.min(100, rawX))
     targetY = Math.max(0, Math.min(100, rawY))
+
+    if (prefersReducedMotion) {
+      currentX = targetX
+      currentY = targetY
+      element.style.setProperty('--glace-light-x', `${Math.round(targetX)}%`)
+      element.style.setProperty('--glace-light-y', `${Math.round(targetY)}%`)
+      return
+    }
 
     if (rafId === null) {
       rafId = requestAnimationFrame(animate)
